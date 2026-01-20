@@ -125,6 +125,10 @@ const canvas = document.getElementById('c');
 const gl = canvas.getContext('webgl', {alpha:false});
 if (!gl) throw 'WebGL failed';
 
+// Timing constants (in seconds)
+const RUN_DURATION = 10.0;
+const FADE_DURATION = 0.5;
+
 function resize() {
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
@@ -142,6 +146,7 @@ const shaders = [
     precision highp float;
     uniform vec3 iResolution;
     uniform float iTime;
+    uniform float fadeLevel;
 
     void mainImage(out vec4 c, in vec2 f){
         vec2 p = (2.0 * f - iResolution.xy) / min(iResolution.x, iResolution.y);
@@ -154,7 +159,7 @@ const shaders = [
         float r = (cos(p.x + p.y + 1.0)) * 0.5 + 0.5;
         float g = abs(sin(p.x + p.y + 1.0));
         float b = 0.5 + 0.5 * ((sin(p.x + p.y) + cos(p.x + p.y)) * 0.8);
-        c = vec4(r,g,b,1.0);
+        c = vec4(r * fadeLevel, g * fadeLevel, b * fadeLevel, 1.0);
     }
     void main(){mainImage(gl_FragColor, gl_FragCoord.xy);}
     `,
@@ -164,6 +169,7 @@ const shaders = [
 precision highp float;
 uniform vec3 iResolution;
 uniform float iTime;
+uniform float fadeLevel;
 
 vec3 pal(float t){
     vec3 b = vec3(0.45);
@@ -221,7 +227,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord){
     col = mix(col, vec3(0.0), hit ? 0.0 : 1.0);
     col = mix(vec3(0.0),col, vign+0.1);
     col = smoothstep(0.0,1.0+0.3*sin(iTime+p.x*4.0+p.z*4.0),col);
-    fragColor = vec4(sqrt(col),1.0);
+    fragColor = vec4(sqrt(col) * fadeLevel, 1.0);
 }
 void main(){mainImage(gl_FragColor, gl_FragCoord.xy);}
 `,
@@ -231,6 +237,7 @@ void main(){mainImage(gl_FragColor, gl_FragCoord.xy);}
 precision highp float;
 uniform vec3 iResolution;
 uniform float iTime;
+uniform float fadeLevel;
 
 float hash( float n )
 {
@@ -368,44 +375,95 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
 
     colorVec = pow(colorVec, vec3(1.0 / 2.2));
 
-    fragColor = vec4(colorVec, 1.0);
+    fragColor = vec4(colorVec * fadeLevel, 1.0);
 }
 
 void main(){mainImage(gl_FragColor, gl_FragCoord.xy);}
 `
 ];
 
-const fs = shaders[Math.floor(Math.random()*shaders.length)];
+// Compile all shader programs
+function createProgram(fs) {
+    const prog = gl.createProgram();
+    [gl.VERTEX_SHADER, gl.FRAGMENT_SHADER].forEach((t, i) => {
+        const s = gl.createShader(t);
+        gl.shaderSource(s, i ? fs : vs);
+        gl.compileShader(s);
+        gl.attachShader(prog, s);
+    });
+    gl.linkProgram(prog);
+    return {
+        program: prog,
+        uRes: gl.getUniformLocation(prog, 'iResolution'),
+        uTime: gl.getUniformLocation(prog, 'iTime'),
+        uFade: gl.getUniformLocation(prog, 'fadeLevel')
+    };
+}
 
-const p = gl.createProgram();
-[gl.VERTEX_SHADER, gl.FRAGMENT_SHADER].forEach((t,i)=>{
-    const s = gl.createShader(t);
-    gl.shaderSource(s, i?fs:vs);
-    gl.compileShader(s);
-    gl.attachShader(p,s);
-});
-gl.linkProgram(p);
-gl.useProgram(p);
+const programs = shaders.map(createProgram);
 
+// Set up geometry (shared by all programs)
 gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
 gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,3,-1,-1,3]), gl.STATIC_DRAW);
 gl.enableVertexAttribArray(0);
 gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);
 
-const uRes = gl.getUniformLocation(p,'iResolution');
-const uTime = gl.getUniformLocation(p,'iTime');
+// State
+let currentIndex = Math.floor(Math.random() * shaders.length);
+let cycleStart = performance.now();
+let shaderStart = performance.now();
 
-let start = performance.now();
-(function render(){
+// Transition states: 'visible', 'fading_out', 'fading_in'
+let transitionState = 'fading_in';
+let transitionStart = performance.now();
+
+function render() {
     resize();
-    const t = (performance.now() - start) * 0.001;
-    gl.uniform3f(uRes, canvas.width, canvas.height, 1);
-    gl.uniform1f(uTime, t);
+    const now = performance.now();
+    const shaderTime = (now - shaderStart) * 0.001;
+    const cycleTime = (now - cycleStart) * 0.001;
+
+    // Calculate fade level based on transition state
+    let fadeLevel = 1.0;
+    const transitionElapsed = (now - transitionStart) * 0.001;
+
+    if (transitionState === 'fading_in') {
+        fadeLevel = Math.min(transitionElapsed / FADE_DURATION, 1.0);
+        if (fadeLevel >= 1.0) {
+            transitionState = 'visible';
+        }
+    } else if (transitionState === 'fading_out') {
+        fadeLevel = Math.max(1.0 - transitionElapsed / FADE_DURATION, 0.0);
+        if (fadeLevel <= 0.0) {
+            // Switch to next shader
+            currentIndex = (currentIndex + 1) % shaders.length;
+            shaderStart = now;
+            cycleStart = now;
+            transitionState = 'fading_in';
+            transitionStart = now;
+            fadeLevel = 0.0;
+        }
+    } else if (transitionState === 'visible') {
+        // Check if it's time to start fading out
+        if (cycleTime >= RUN_DURATION) {
+            transitionState = 'fading_out';
+            transitionStart = now;
+        }
+    }
+
+    const prog = programs[currentIndex];
+    gl.useProgram(prog.program);
+    gl.uniform3f(prog.uRes, canvas.width, canvas.height, 1);
+    gl.uniform1f(prog.uTime, shaderTime);
+    gl.uniform1f(prog.uFade, fadeLevel);
+
     gl.clearColor(0,0,0,1);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
     requestAnimationFrame(render);
-})();
+}
+
+render();
 </script>
 </body>
 </html>
