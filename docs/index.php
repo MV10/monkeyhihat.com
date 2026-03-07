@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Monkey Hi Hat - Documentation</title>
+<title>Monkey Hi Hat</title>
 <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96" />
 <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
 <link rel="shortcut icon" href="/icons/favicon.ico" />
@@ -274,12 +274,78 @@ body.light .content-resizer.dragging{background:rgba(var(--resizer-color),0.55)}
 .markdown-section table tr:nth-child(2n) td{background:var(--table-alt-bg)}
 .markdown-section img{max-width:100%;border-radius:6px}
 .markdown-section hr{border:none;border-top:1px solid var(--border);margin:24px 0}
+
+/* ─── Mobile TOC button (hidden on desktop) ─── */
+.mobile-toc-btn{
+    display:none;
+    position:absolute;
+    right:1rem;
+    top:50%;
+    transform:translateY(-50%);
+    background:none;
+    border:1px solid rgba(255,255,255,0.35);
+    border-radius:6px;
+    color:#fff;
+    cursor:pointer;
+    padding:5px 10px;
+    font-size:0.8rem;
+    font-weight:600;
+    align-items:center;
+    gap:5px;
+    white-space:nowrap;
+    transition:background .15s,border-color .15s;
+}
+.mobile-toc-btn:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.6)}
+body.light .mobile-toc-btn{border-color:rgba(0,0,0,0.25);color:#1f2328}
+body.light .mobile-toc-btn:hover{background:rgba(0,0,0,0.07)}
+
+/* ─── Mobile sidebar backdrop ─── */
+.mobile-backdrop{
+    display:none;
+    position:fixed;
+    top:var(--header-h);
+    left:0;right:0;bottom:0;
+    background:rgba(0,0,0,0.45);
+    z-index:90;
+}
+.mobile-backdrop.active{display:block}
+
+/* ─── Responsive: narrow / portrait phone ─── */
+@media (max-width:768px){
+    .mobile-toc-btn{display:flex}
+    .sidebar-resizer,.content-resizer{display:none !important}
+
+    .sidebar{
+        width:100% !important;
+        max-height:65vh;
+        border-right:none;
+        border-bottom:1px solid var(--sidebar-border);
+        z-index:100;
+        /* start off-screen above the header area, revealed by toggling display */
+        display:none;
+        overflow-y:auto;
+        padding-bottom:1rem;
+    }
+    .sidebar.mobile-open{display:block}
+
+    .content{
+        left:0 !important;
+    }
+
+    .markdown-section{
+        max-width:100% !important;
+        padding:1.25rem 1rem;
+    }
+}
 </style>
 </head>
 <body>
 
 <header class="site-header">
-    <p class="title">Monkey Hi Hat Documentation</p>
+    <p class="title">Monkey Hi Hat Docs</p>
+    <button class="mobile-toc-btn" id="mobileTocBtn" aria-expanded="false" aria-label="Toggle table of contents">
+        ☰ Contents
+    </button>
 </header>
 
 <div id="app"></div>
@@ -318,6 +384,57 @@ function toggleTheme() {
     localStorage.setItem('docs-theme', isNowLight ? 'light' : 'dark');
     updateToggleIcon();
 }
+
+// ─── Mobile sidebar toggle ───
+(function() {
+    var backdrop = document.createElement('div');
+    backdrop.className = 'mobile-backdrop';
+    document.body.appendChild(backdrop);
+
+    function isMobile() { return window.innerWidth <= 768; }
+
+    function getSidebar() { return document.querySelector('.sidebar'); }
+
+    function closeMobileSidebar() {
+        var s = getSidebar();
+        if (s) s.classList.remove('mobile-open');
+        backdrop.classList.remove('active');
+        var btn = document.getElementById('mobileTocBtn');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+    }
+
+    function openMobileSidebar() {
+        var s = getSidebar();
+        if (s) s.classList.add('mobile-open');
+        backdrop.classList.add('active');
+        var btn = document.getElementById('mobileTocBtn');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+    }
+
+    document.getElementById('mobileTocBtn').addEventListener('click', function() {
+        var s = getSidebar();
+        if (s && s.classList.contains('mobile-open')) {
+            closeMobileSidebar();
+        } else {
+            openMobileSidebar();
+        }
+    });
+
+    backdrop.addEventListener('click', closeMobileSidebar);
+
+    // Close sidebar when a nav link is tapped on mobile
+    document.addEventListener('click', function(e) {
+        if (!isMobile()) return;
+        if (e.target.closest('.sidebar-nav a')) {
+            setTimeout(closeMobileSidebar, 80);
+        }
+    });
+
+    // Close sidebar if resized to desktop width
+    window.addEventListener('resize', function() {
+        if (!isMobile()) closeMobileSidebar();
+    });
+})();
 
 window.$docsify = {
     el: '#app',
