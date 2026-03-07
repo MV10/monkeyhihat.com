@@ -24,7 +24,7 @@ The levels are, in order of most-detailed to least-detailed:
 
 Just a few seconds of start-up verbose logging looks something like this:
 
-<img width="800" height="294" alt="image" src="https://github.com/user-attachments/assets/693d22c0-c548-43ef-8430-e11cd753218c" />
+![image](images/logging.png)
 
 ## Categories
 

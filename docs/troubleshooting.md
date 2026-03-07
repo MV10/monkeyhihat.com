@@ -16,8 +16,6 @@ No known issues.
 
 > When reporting installation issues (including upgrade / uninstall problems), please attach the log file. You can find this in your user account temporary directory, normally `C:\Users\your_username\AppData\Local\Temp` with the filename `install-monkey-hi-hat.log`. This is just a text file so please feel free to review it before sending. It will not contain any sensitive system information.
 
-If the installer fails for some reason, the application is simple to install by hand. Details are in the _Quick Start_ sections of the docs. Even if that works for you, please open an issue so I can investigate whatever problem you encountered.
-
 ## Program Execution Issues
 
 No known issues.

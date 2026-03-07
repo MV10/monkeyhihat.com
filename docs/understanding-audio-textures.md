@@ -36,7 +36,7 @@ This is a 1-pixel-wide history texture. Sample x at 0.5 to hit the center of the
 
 The eyecandy demo "stretches" the one-pixel-width texture across the entire viewport:
 
-![image](https://github.com/MV10/monkey-hi-hat/assets/794270/25f83a0b-2608-45b1-ad53-a9432db4131d)
+![image](images/eyecandyVolume.png)
 
 ## eyecandyWave (AudioTextureWaveHistory)
 
@@ -46,7 +46,7 @@ This is a full-width history texture. However, technically this is point-in-time
 
 Direct output of the texture doesn't really convey the "wave" aspect (see the Shadertoy texture below for a different presentation):
 
-![image](https://github.com/MV10/monkey-hi-hat/assets/794270/162fdc4e-3869-45af-a704-28a412298b7f)
+![image](images/eyecandyWave.png)
 
 ## eyecandyFreqMag (AudioTextureFrequencyMagnitudeHistory)
 
@@ -56,7 +56,7 @@ This is a full-width history texture. The most recent data is at y 0.0, x 0.0 is
 
 Without magnification, it can be difficult to see this texture at all:
 
-![image](https://github.com/MV10/monkey-hi-hat/assets/794270/dd712d51-fcb7-4974-b15b-933c293b81db)
+![image](images/eyecandyFreqMag.png)
 
 ## eyecandyFreqDB (AudioTextureFrequencyDecibelHistory)
 
@@ -66,7 +66,7 @@ This is a full-width history texture. The most recent data is at y 0.0, x 0.0 is
 
 The decibel frequency representation is much easier to see:
 
-![image](https://github.com/MV10/monkey-hi-hat/assets/794270/9d4db060-07be-4914-a7b2-086dd726759c)
+![image](images/eyecandyFreqDB.png)
 
 ## eyecandyShadertoy (AudioTextureShadertoy)
 
@@ -76,7 +76,7 @@ The PCM wave data should be in the normalized (0.0 to 1.0) range, with 0.5 repre
 
 The eyecandy demo for this texture separately draws the PCM wave data in red and the decibel-like WebAudio frequency data in red.
 
-![image](https://github.com/MV10/monkey-hi-hat/assets/794270/00329d77-e6b5-420b-b18b-8c1f83a1348d)
+![image](images/eyecandyShadertoy.png)
 
 ## eyecandy4Channel (AudioTexture4ChannelHistory)
 
@@ -90,7 +90,7 @@ All four RGBA channels are used:
 
 This is a full-width history texture.
 
-![image](https://github.com/MV10/monkey-hi-hat/assets/794270/24b2b04b-efe3-4774-bbe8-d42cbc84666e)
+![image](images/eyecandy4Channel.png)
 
 ## eyecandyWebAudio (AudioTextureWebAudioHistory)
 
@@ -100,5 +100,5 @@ This is a full-width history texture.
 
 It may be difficult to see in this thumbnail, but directly viewing the texture has a sort of "smeared" look compared to clean, true decibel data.
 
-![image](https://github.com/MV10/monkey-hi-hat/assets/794270/7799c08f-8ff3-4da3-b83a-18dab4dbde69)
+![image](images/eyecandyWebAudio.png)
 

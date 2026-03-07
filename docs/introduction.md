@@ -28,7 +28,7 @@ The _Commands and Keys_ documentation shows you all of the command-line options,
 * Linux: Run the `mhh` program in the app directory under your home directory (ie. `cd ~/mhh; ./mhh`)
 * You should see a spinning swirly-ball thing -- this is the "idle" shader built into the program:
 
-![image](https://github.com/MV10/monkey-hi-hat/assets/794270/780ab053-8ee3-432c-b2e0-9d8f5322627a)
+![image](images/idle.png)
 
 If your program is running full-screen, press the <kbd>Spacebar</kbd> to switch to windowed mode. The program hides the mouse pointer by default, but the graphical output (not the terminal) must have focus for this to work. Now let's verify you can load the visualizers that were installed with the program. 
 

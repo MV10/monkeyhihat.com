@@ -52,11 +52,11 @@ The _Introduction_ page mentions I don't intend to support Intel's integrated GP
 
 This is how it looks on my primary desktop with a dedicated NVIDIA RTX-2060 GPU:
 
-![image](https://github.com/MV10/monkey-hi-hat/assets/794270/1a98aff0-9742-4c60-86b3-3107d2824fd3)
+![image](images/random-nvidia.png)
 
 But when I run it on the living room TV's miniPC, which uses an integrated AMD Radeon 780M, it only ever generates two big, uninteresting bubbles (and another user on Shadertoy reported his Mac M1 GPU produces the same incorrect results):
 
-![image](https://github.com/MV10/monkey-hi-hat/assets/794270/9ea2658d-981b-4870-b73e-2293597b269c)
+![image](images/random-amd.png)
 
 Bear in mind that Shadertoy can't generate random numbers, so they _should_ be identical. Why does this happen? I suspect a roundoff or similar numeric issue with this function, which is a standard way of generating a pseudo-random number (it isn't actually random in any sense, it's just "large and unexpected" -- but always the same):
 
