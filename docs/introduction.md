@@ -10,6 +10,16 @@ After getting familiar with the program running locally, DJ / VJ users may want 
 
 If you're interested in the technical underpinnings, there is some information in the [eyecandy wiki](https://github.com/MV10/eyecandy/wiki), which is the library that powers Monkey Hi Hat, and various articles on my [blog](https://mcguirev10.com/). But at this point, most of the information is here (and in fact, developers interested in eyecandy are directed to this documentation for various aspects of setup and usage).
 
+## Requirements
+
+* A modern video card (or integrated GPU) that supports OpenGL API 4.5 (most non-Intel GPUs are OK)
+* .NET 8 runtime (or on Windows, Visual Studio with the .NET 8 SDK)
+* Recommended: Monkey-Droid GUI
+* Optional: Remote control via SSH
+* For content creators: GLSL editor or IDE extension
+
+And of course, you will need a source of music such as Spotify or Soundcloud. Spotify has a decent native Windows client ([download](https://open.spotify.com/download)) which has the benefit that it allows remote-control of music playing through your PC from any other client on the same network -- such as your phone or a laptop.
+
 ## Running for the First Time
 
 The _Commands and Keys_ documentation shows you all of the command-line options, but that can be overwhelming at first. Here's a quick step-by-step. This assumes you are also using the visualizer and FX content from Volt's Laboratory, which the installer will automatically download and configure.
@@ -41,6 +51,8 @@ With the idle shader still running:
 If any of these fail to load, check the console window for error messages, or view the `mhh.log` file in the app directory.
 
 If you have problems, please open a Github [Issue](https://github.com/MV10/monkey-hi-hat/issues) and ask for help.
+
+See the [Using Monkey Hi Hat](using-monkey-hi-hat.md) page for details about real-world usage.
 
 ## Hardware Notes
 

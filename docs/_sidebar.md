@@ -1,9 +1,15 @@
+**Getting Started** 
 * [Introduction](introduction)
 * [Windows Quick-Start](windows-quick-start)
 * [Linux Quick-Start](linux-quick-start)
+* [Using Monkey Hi Hat](using-monkey-hi-hat.md)
+
+**Options and Controls** 
 * [Post-Install Instructions](post-install-instructions)
 * [App Configuration](app-configuration)
 * [Commands and Keys](commands-and-keys)
+
+**Content Creation** 
 * [Creating Visualizations](creating-visualizations)
 * [Visualization Configuration](visualization-configuration)
 * [Understanding Audio Textures](understanding-audio-textures)
@@ -11,6 +17,8 @@
 * [Post-Processing FX](post-processing-fx)
 * [Reusable Shader Library Functions](reusable-shader-library-functions)
 * [Playlist Configuration](playlist-configuration)
+
+**Appendix** 
 * [DJ and VJ Notes](dj-and-vj-notes)
 * [Contributor's Getting Started](contributors-getting-started)
 * [Logging](logging)
