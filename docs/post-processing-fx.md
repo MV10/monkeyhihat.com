@@ -4,7 +4,7 @@
 
 Post-processing (referred to as "FX" here and throughout the program) is simply another form of multi-pass rendering which uses the output from a visualization as an input texture. Like visualizers, FX uses a `.conf` configuration file format, requires `.frag` shader source code files, and these files must be stored in one of the paths listed in the application's `FXPath` setting.
 
-You can think of FX as additional multi-pass stages added to an existing visualization, which is referred to as the "primary" visualization. You should therefore read and understand how multi-pass visualizations work (see the _Visualization Configuration_ wiki topic). In fact, the FX configuration files have a `[multipass]` section, but the first pass must always be draw-buffer 1 because draw-buffer 0 is automatically reserved for the primary visualization the FX is operating on. FX passes only support `VertexQuad`-style fragment shaders.
+You can think of FX as additional multi-pass stages added to an existing visualization, which is referred to as the "primary" visualization. You should therefore read and understand how multi-pass visualizations work (see the [Visualization Configuration](visualization-configuration.md) topic). In fact, the FX configuration files have a `[multipass]` section, but the first pass must always be draw-buffer 1 because draw-buffer 0 is automatically reserved for the primary visualization the FX is operating on. FX passes only support `VertexQuad`-style fragment shaders.
 
 FX can be added explicitly via the `--load` command or a playlist configuration file, or they can be applied randomly by the playlist manager.
 
@@ -20,13 +20,13 @@ FX can be added explicitly via the `--load` command or a playlist configuration 
 
 ## The [MultiPass] Section
 
-The multi-pass section is a simplified version of that used by visualizations. The Draw-Buffer and Input-Buffer columns are the same, except that buffer 0 is always assigned to the primary visualization and must never be specified. See the _Visualization Configuration_ wiki topic for details about the Draw-Buffer and Input-Buffer columns.
+The multi-pass section is a simplified version of that used by visualizations. The Draw-Buffer and Input-Buffer columns are the same, except that buffer 0 is always assigned to the primary visualization and must never be specified. See the [Visualization Configuration](visualization-configuration.md) topic for details about the Draw-Buffer and Input-Buffer columns.
 
 The third column must be the name of a fragment shader (the `.frag` extension is optional). The built-in pass-through vertex shader is always used.
 
 ## Other Sections
 
-FX configurations can also specify `[uniforms]`, `[textures]`, `[videos]`, `[audiotextures]` and `[libraries]` sections. These work exactly the same way as the same sections do in visualizer configuration files. See the _Visualization Configuration_ wiki topic for details.
+FX configurations can also specify `[uniforms]`, `[textures]`, `[videos]`, `[audiotextures]` and `[libraries]` sections. These work exactly the same way as the same sections do in visualizer configuration files. See the [Visualization Configuration](visualization-configuration.md) topic for details.
 
 ## Advanced: Option Uniforms
 

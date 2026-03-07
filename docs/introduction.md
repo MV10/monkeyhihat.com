@@ -1,12 +1,12 @@
 # Introduction
 
-The wiki explains how to use monkey-hi-hat, but also how to set up your system correctly.
+These documents explain how to use Monkey Hi Hat, but also how to set up your system correctly.
 
-As of version 4.0.0, the install program handles _all_ major setup requirements. All you need to do is provide the music!
+As of version 4.0.0, the Windows install program handles _all_ major setup requirements. All you need to do is provide the music! Linux users need a few extra steps (simple).
 
-After installation, you may want to glance at the [Post-Installation](https://github.com/MV10/monkey-hi-hat/wiki/Post%E2%80%90Install%E2%80%90Instructions) wiki notes. Even though the installer should get you running, Monkey Hi Hat is designed for interactive control from a remote device. The repository's [README](https://github.com/MV10/monkey-hi-hat/blob/master/README.md) also has links and details.
+After installation, you may want to glance at the [Post-Installation](post-install-instructions.md) notes. Even though the installer should get you running, Monkey Hi Hat is designed for interactive control from a remote device. The repository's [README](https://github.com/MV10/monkey-hi-hat/blob/master/README.md) also has links and details.
 
-After getting familiar with the program running locally, DJ / VJ users may want to refer to specific configuration options for running shows in more complex environments described on the [DJ and VJ Notes](https://github.com/MV10/monkey-hi-hat/wiki/DJ-and-VJ-Notes) wiki page, including line-level audio, and video routing with Spout or NDI.
+After getting familiar with the program running locally, DJ / VJ users may want to refer to specific configuration options for running shows in more complex environments described on the [DJ and VJ Notes](dj-and-vj-notes.md) page, including line-level audio, and video routing with Spout or NDI.
 
 If you're interested in the technical underpinnings, there is some information in the [eyecandy wiki](https://github.com/MV10/eyecandy/wiki), which is the library that powers Monkey Hi Hat, and various articles on my [blog](https://mcguirev10.com/). But at this point, most of the information is here (and in fact, developers interested in eyecandy are directed to this documentation for various aspects of setup and usage).
 
@@ -40,7 +40,7 @@ With the idle shader still running:
 
 If any of these fail to load, check the console window for error messages, or view the `mhh.log` file in the app directory.
 
-If you have problems, please open an [issue](https://github.com/MV10/monkey-hi-hat/issues) and ask for help.
+If you have problems, please open a Github [Issue](https://github.com/MV10/monkey-hi-hat/issues) and ask for help.
 
 ## Hardware Notes
 

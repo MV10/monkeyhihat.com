@@ -2,7 +2,7 @@
 
 ## Install Program
 
-> If you use the install program, that is ALL you really need to know. The wiki home page shows you how to test your setup. The rest of this page explains _manual_ installation for people who build from source, and various optional features that might make your use of the program easier.
+> If you use the install program, that is ALL you really need to know. The documentation home page shows you how to test your setup. The rest of this page explains _manual_ installation for people who build from source, and various optional features that might make your use of the program easier.
 
 An install program is available on the release page. The installer can also update older versions or uninstall the current version.
 
@@ -30,7 +30,7 @@ Run the installer (Windows x64 link at the bottom right):
 
 Obviously, you need to install monkey-hi-hat itself. The Windows installer handles everything for you. The application will be `C:\Program Files\mhh` and the content directory will be `C:\ProgramData\mhh-content`.
 
-The installer also makes all of the necessary basic changes to the configuration file, which is `mhh.conf` in the application's directory. The configuration file is a plain text file you can read and edit with Notepad. It has many detailed comments to help you understand the settings. For my own usage after a fresh install, usually I just enable the first three settings in the file (`StartFullScreen`, `StartInStandby`, and `CloseToStandby`) and I leave the rest of it alone. Refer to comments in the config file and also the [config](https://github.com/MV10/monkey-hi-hat/wiki/03.-App-Configuration-(mhh.conf)) wiki topic for more details. 
+The installer also makes all of the necessary basic changes to the configuration file, which is `mhh.conf` in the application's directory. The configuration file is a plain text file you can read and edit with Notepad. It has many detailed comments to help you understand the settings. For my own usage after a fresh install, usually I just enable the first three settings in the file (`StartFullScreen`, `StartInStandby`, and `CloseToStandby`) and I leave the rest of it alone. Refer to comments in the config file and also the [config](app-configuration.md) topic for more details. 
 
 If you're a programmer and you plan to create your own visualizations and effects, create a _separate_ directory structure on your computer or your network for those files (your config file can point to both sets of directories). Using separate directories for your custom content makes it easier to update the "off the shelf" content with future releases. Your custom directory structure should look like this:
 
@@ -44,7 +44,7 @@ If you're a programmer and you plan to create your own visualizations and effect
       +--📂 textures
 ```
 
-The wiki documentation home page has a basic first-time walk-through, but usage is simple: open a command-line window, change to the install directory, and run `mhh.exe`. This loads the low-overhead "idle" visualizer. To send commands to the running instance, open another command-line window, change to the install directory, and run `mhh --help` to see the command-line help options. If you're using the sample content, start up some music and run the command `mhh --playlist variety`.
+The documentation home page has a basic first-time walk-through, but usage is simple: open a command-line window, change to the install directory, and run `mhh.exe`. This loads the low-overhead "idle" visualizer. To send commands to the running instance, open another command-line window, change to the install directory, and run `mhh --help` to see the command-line help options. If you're using the sample content, start up some music and run the command `mhh --playlist variety`.
 
 The program window recognizes several keyboard commands. Two of them are:
 

@@ -10,7 +10,7 @@ As of version 5.2.0, Linux is officially supported.
 
 Working on MHH should be as simple as forking and cloning the repo, then firing up Visual Studio or JetBrains Rider. I assume anyone interested in development has already installed and run the app, which means you should already have the [volts-laboratory](https://github.com/MV10/volts-laboratory) content (visualizers, FX, etc) in your `C:\Program Data\mhh-content` or `/opt/mhh-content` directory. You will want to modify your config file to point there. 
 
-I won't accept PRs of the config files unless you're (a) adding something new or fixing something (start an Issues discussion about it first), and (b) have applied *only* those changes to the config files I distribute now, and (c) you're also willing to update the install processes to support the new config. Read the wiki page on configuration to find out how to reference a stand-alone config that isn't part of source control.
+I won't accept PRs of the config files unless you're (a) adding something new or fixing something (start an Issues discussion about it first), and (b) have applied *only* those changes to the config files I distribute now, and (c) you're also willing to update the install processes to support the new config. Read the page on configuration to find out how to reference a stand-alone config that isn't part of source control.
 
 You should probably have at least a passing familiarity with OpenGL programming (GLSL, or at least something like Shadertoy's WebGL). There are definitely areas of the codebase that never touch on that at all, but the bulk of it is really in the weeds on rendering sequences (particularly the intricacies of buffer-handling) and GL resource-handling.
 
@@ -80,7 +80,7 @@ Since MHH is cross-platform, a few features need OS-specific handling. The `Prog
 
 ### VertexSources Directory
 
-In MHH parlance, a vertex source is what feeds data into the vertex stage of the shader pipeline. Currently there are only two, and these are documented elsewhere in the wiki. Pretty simple stuff.
+In MHH parlance, a vertex source is what feeds data into the vertex stage of the shader pipeline. Currently there are only two, and these are documented under _Creating Visualizations_. Pretty simple stuff.
 
 ## Related Repositories
 

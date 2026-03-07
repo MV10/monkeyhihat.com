@@ -4,7 +4,7 @@
 
 For Windows users, downloading and running the installer (ie. `install-5-2-0.exe`) from the release page should arrange everything so that the program runs "out of the box", although there are many configurable options available. 
 
-For Linux users, currently script-based installation is available and due to Linux security policies, two dependencies have to be manually installed. Instructions are on the _Linux Quick Start_ wiki page.
+For Linux users, currently script-based installation is available and due to Linux security policies, two dependencies have to be manually installed. Instructions are on the _Linux Quick Start_ page.
 
 
 ## Config File Locations
@@ -34,7 +34,7 @@ You may want to review the config file after an update, especially if you're a h
 
 > Windows: The installer _**only**_ modifies a config file in the default location. If you have alternates, you must maintain those copies by hand. The installed `ConfigFiles` directory contains a current template / default copy of `mhh.conf` you can use for comparison.
 
-> Linux: The app archive _never_ includes `mhh.conf` in the app's main directory, so you (and/or the update script) can expand a new version's archive directly over the old one. Your old config will be untouched. However, you will be responsible for adding any new or changed config entries for the time being (refer to the wiki's changelog page). Sub-optimal but Linux support is a work-in-progress.
+> Linux: The app archive _never_ includes `mhh.conf` in the app's main directory, so you (and/or the update script) can expand a new version's archive directly over the old one. Your old config will be untouched. However, you will be responsible for adding any new or changed config entries for the time being (refer to the Changelog page). Sub-optimal but Linux support is a work-in-progress.
 
 
 ## Required Path Settings

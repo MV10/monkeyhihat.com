@@ -26,6 +26,7 @@
 * Removed Windows NDI 32 bit DLL
 * Created release-packaging scripts (see packaging/README)
 * Allows content versioning to lag app release versioning
+* Fixed installer bug for Windows usernames containing spaces (2025-03-07 v5.2.0a)
 
 
 #### v5.1.0 2025-10-29
@@ -81,7 +82,7 @@
 * Added video-clip-based "ghostly" FX (Volt's Laboratory repo)
 * Added additional variants on the "costume" video clip (Volt's Laboratory repo)
 * Added `silent` uniform (float 0/1) to notify shaders that the engine is detecting silence
-* Updated to eyecandy v3.3.0 with synthetic silence-replacement data (see [changelog](https://github.com/MV10/eyecandy/wiki/5.-Changelog))
+* Updated to eyecandy v3.3.0 with synthetic silence-replacement data
 * New `LoopbackApi=SyntheticData` option available in `[windows]` section of mhh.conf
 * Added mhh.conf settings relating to silence-replacement / synthetic data:
   * `MinimumSilenceSeconds` - default 0.25, duration before "silence" is flagged

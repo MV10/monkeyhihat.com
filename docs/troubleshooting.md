@@ -16,7 +16,7 @@ No known issues.
 
 > When reporting installation issues (including upgrade / uninstall problems), please attach the log file. You can find this in your user account temporary directory, normally `C:\Users\your_username\AppData\Local\Temp` with the filename `install-monkey-hi-hat.log`. This is just a text file so please feel free to review it before sending. It will not contain any sensitive system information.
 
-If the installer fails for some reason, the application is simple to install by hand. Details are in the [Quick Start](https://github.com/MV10/monkey-hi-hat/wiki/01.-Windows-Quick%E2%80%90Start) section of the wiki. Even if that works for you, please open an issue so I can investigate whatever problem you encountered.
+If the installer fails for some reason, the application is simple to install by hand. Details are in the _Quick Start_ sections of the docs. Even if that works for you, please open an issue so I can investigate whatever problem you encountered.
 
 ## Program Execution Issues
 
@@ -34,7 +34,7 @@ If your system can't maintain a smooth frame-rate, consider changing the `Render
 
 No known issues.
 
-While I can't help anyone learn to program or write shaders, I'm happy to help with issues like system setup, clarifying how the content creation process works, and so on. Shader programming is a potentially very complicated topic and there are many, many resources available across the web. The basics are covered across several topics in the wiki, and also in a simple step-by-step [tutorial](https://mcguirev10.com/2024/01/20/monkey-hi-hat-getting-started-tutorial.html) on my blog.
+While I can't help anyone learn to program or write shaders, I'm happy to help with issues like system setup, clarifying how the content creation process works, and so on. Shader programming is a potentially very complicated topic and there are many, many resources available across the web. The basics are covered across several topics in the docs, and also in a simple step-by-step [tutorial](https://mcguirev10.com/2024/01/20/monkey-hi-hat-getting-started-tutorial.html) on my blog.
 
 ## Sharing Issues (Spout / NDI)
 

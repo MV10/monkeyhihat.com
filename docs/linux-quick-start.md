@@ -50,12 +50,12 @@ It will download some archive files, create some directories, and expand the con
 
 The application and config installs into `~/monkeyhihat` and the content files are in `~/mhh-content`.
 
-If you already have Monkey Hi Hat installed, I do provide an `update.sh` script, but all it really does is overwrites the app and content directories with updated files. The Windows installer tries to update the config file, but Linux support is in the early stages and that functionality isn't available yet (sorry). You should consult the wiki's changelog and manually add any new settings (I'd _strongly_ recommend copying the comments and the settings to the same location as the template). Each release includes a `~/monkeyhihat/ConfigFiles/mhh.conf` template configuration explaining all available options.
+If you already have Monkey Hi Hat installed, I do provide an `update.sh` script, but all it really does is overwrites the app and content directories with updated files. The Windows installer tries to update the config file, but Linux support is in the early stages and that functionality isn't available yet (sorry). You should consult the [Changelog](changelog.md) and manually add any new settings (I'd _strongly_ recommend copying the comments and the settings to the same location as the template). Each release includes a `~/monkeyhihat/ConfigFiles/mhh.conf` template configuration explaining all available options.
 
 
 ## Using Monkey Hi Hat
 
-The wiki documentation home page has a basic first-time walk-through, but usage is simple: open a terminal, change to the install directory, and run `./mhh`. This loads the low-overhead "idle" visualizer. To send commands to the running instance, open another terminal window, change to the install directory, and run `./mhh --help` to see the command-line switches. If you're using the sample content, start up some music and run the command `./mhh --playlist variety`.
+The documentation home page has a basic first-time walk-through, but usage is simple: open a terminal, change to the install directory, and run `./mhh`. This loads the low-overhead "idle" visualizer. To send commands to the running instance, open another terminal window, change to the install directory, and run `./mhh --help` to see the command-line switches. If you're using the sample content, start up some music and run the command `./mhh --playlist variety`.
 
 The program window recognizes several keyboard commands. Two of them are:
 

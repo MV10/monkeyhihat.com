@@ -58,11 +58,11 @@ The output from `mhh --help` lists available switches:
 
 --devices                   list audio device names, can be used when MHH is not running
 
---streaming                 streaming commands control Spout / NDI; refer to the wiki for details
+--streaming                 streaming commands control Spout / NDI; refer to the docs for details
 --streaming status
---streaming send spout|ndi [""sender name""]
---streaming receive spout ""source name""
---streaming receive ndi ""machine (source name)"" [""group1,group2,...groupN""]
+--streaming send spout|ndi ["sender name"]
+--streaming receive spout "source name"
+--streaming receive ndi "machine (source name)" ["group1,group2,...groupN"]
 --streaming stop send|receive
 
 ```
@@ -85,18 +85,18 @@ Several keyboard commands are available:
 
 Some keys are only available or change behavior in certain modes:
 
-| Key | Action |
-|---|---|
-| `→` | Playlist: right-arrow advances to the next visualization
-| `↓` | Playlist: down-arrow applies a random post-processing FX
-| `X` | Playlist: extends auto-advance timer by 1 minute (v4.1.0)
-| `A` | Playlist: pause auto-advance timer (`→` or `--next` resumes; v4.1.0)
-| `+` `-` | Test: advance during the `--test [viz|fx|fade]` command modes
-| `Q` | Test: quit test mode (like `--endtest`, loads the idle viz)
-| `R` | Test: reloads the current combination
-| `Backspace` | Immediate screenshot (jpg format)
-| `Spacebar` | Screenshot: saves after the `--jpg wait` or `--png wait` commands
+| Key | Action                                                               |
+|---|----------------------------------------------------------------------|
+| `→` | Playlist: right-arrow advances to the next visualization             
+| `↓` | Playlist: down-arrow applies a random post-processing FX             
+| `X` | Playlist: extends auto-advance timer by 1 minute (v4.1.0)            
+| `A` | Playlist: pause auto-advance timer (`→` or `--next` resumes; v4.1.0) 
+| `+` `-` | Test: advance during the `--test [viz/fx/fade]` command modes
+| `Q` | Test: quit test mode (like `--endtest`, loads the idle viz)          
+| `R` | Test: reloads the current combination                                
+| `Backspace` | Immediate screenshot (jpg format)                                    
+| `Spacebar` | Screenshot: saves after the `--jpg wait` or `--png wait` commands    
 
 ## Errors and Logging
 
-By default, warnings and errors are written to `mhh.log` in the application directory. The log file is overwritten each time the program is executed. Log level can be changed on-the-fly with the `--log` switch. The config file has a lot of features used to control logging, especially when troubleshooting. See the _Appendix: Logging_ wiki page for more information.
+By default, warnings and errors are written to `mhh.log` in the application directory. The log file is overwritten each time the program is executed. Log level can be changed on-the-fly with the `--log` switch. The config file has a lot of features used to control logging, especially when troubleshooting. See the [Logging](logging.md) page for more information.

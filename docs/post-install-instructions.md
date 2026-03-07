@@ -6,7 +6,7 @@ This page is for users who have just finished running the installer. Prior to ve
 
 ## Configuration Changes to Consider
 
-The configuration file is just a text file you can edit in Notepad. The filename is `mhh.conf` and if you used the installer, it should be available in the `C:\Program Files\mhh` directory on Windows, or `/etc/mhh` on Linux. All of the settings are heavily documented by comments (you can see the config template [here](https://github.com/MV10/monkey-hi-hat/blob/master/mhh/mhh/ConfigFiles/mhh.conf) in the repository) and the wiki has a [short](https://github.com/MV10/monkey-hi-hat/wiki/03.-App-Configuration) page with some high-level considerations.
+The configuration file is just a text file you can edit in Notepad. The filename is `mhh.conf` and if you used the installer, it should be available in the `C:\Program Files\mhh` directory on Windows, or `/etc/mhh` on Linux. All of the settings are heavily documented by comments (you can see the config template [here](https://github.com/MV10/monkey-hi-hat/blob/master/mhh/mhh/ConfigFiles/mhh.conf) in the repository) and the documentation has a short [App Configuration](app-configuration.md) page with some high-level considerations.
 
 I personally like to change the first three options:
 

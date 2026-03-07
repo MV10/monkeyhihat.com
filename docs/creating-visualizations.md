@@ -46,7 +46,7 @@ Refer to the _Understanding Audio Textures_ section more details about what thes
 
 ## GPUs Are Not Identical
 
-The wiki _Home_ page mentions I don't intend to support Intel's integrated GPUs, but even AMD and NVIDIA have their hardware and driver quirks. For example, consider zguerrero's Shadertoy creation [SlowMo Fluid](https://www.shadertoy.com/view/ltdGDn), which is the basis for the _splash_ FX used by monkey-hi-hat. The following screenshots are from Shadertoy in the browser, but the monkey-hi-hat FX exhibits the exact same behavior.
+The _Introduction_ page mentions I don't intend to support Intel's integrated GPUs, but even AMD and NVIDIA have their hardware and driver quirks. For example, consider zguerrero's Shadertoy creation [SlowMo Fluid](https://www.shadertoy.com/view/ltdGDn), which is the basis for the _splash_ FX used by monkey-hi-hat. The following screenshots are from Shadertoy in the browser, but the monkey-hi-hat FX exhibits the exact same behavior.
 
 > UPDATE 2025-AUG-13: Shadertoy user morimea (aka danilw on Github) pointed out this isn't actually an AMD bug and many NVIDIA GPUs exhibit the same behavior. It is the sin-hash function itself which is unreliable, as noted on his Github [README](https://github.com/danilw/GPU-sin-hash-stability), and documented further in his Medium [article](https://arugl.medium.com/hash-noise-in-gpu-shaders-210188ac3a3e). The rest of this section is as I wrote it originally in 2023, and two years later people are still using the broken hash, so it's worth being aware of.
 
