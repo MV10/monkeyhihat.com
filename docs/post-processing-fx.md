@@ -6,7 +6,7 @@ Post-processing (referred to as "FX" here and throughout the program) is simply 
 
 You can think of FX as additional multi-pass stages added to an existing visualization, which is referred to as the "primary" visualization. You should therefore read and understand how multi-pass visualizations work (see the [Visualization Configuration](visualization-configuration.md) topic). In fact, the FX configuration files have a `[multipass]` section, but the first pass must always be draw-buffer 1 because draw-buffer 0 is automatically reserved for the primary visualization the FX is operating on. FX passes only support `VertexQuad`-style fragment shaders.
 
-FX can be added explicitly via the `--load` command or a playlist configuration file, or they can be applied randomly by the playlist manager.
+FX can be added explicitly via the `--load` or `--fx` commands, or a playlist configuration file, or they can be applied randomly by the playlist manager.
 
 ## The [FX] Section
 

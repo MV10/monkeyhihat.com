@@ -20,7 +20,7 @@ The visualization configuration tells monkey-hi-hat what kind of data to send to
 
 * `RandomTimeOffset` is disabled by default (value 0). It will add or subtract a randomly-generated offset to the `time` uniform passed to shaders. This is useful when a shader is highly time-dependent, but produces very different output over time. Note that some shaders need to "seed" their drawing buffers for the first few passes. If they rely on `time` for this, you may be able to convert them to use the `frame` count instead (especially if you have defined a frame-rate target).
 
-* `RandomTextureSync` is false by default. When true, if random texture selection is used (one uniform used for multiple textures), then the same texture index is used for all randomized textures. This is most useful for synchronizing texture masks. (See the _Starship_ FX for an example of this.)
+* `RandomTextureSync` is false by default. When true, if random texture selection is used (one uniform used for multiple textures), then the same texture index is used for all randomized textures. This is most useful for synchronizing texture masks. (See the [Starship FX](https://github.com/MV10/volts-laboratory/blob/master/fx/starship.conf) for an example of this.)
 
 ## The [VertexIntegerArray] Section
 
@@ -30,7 +30,7 @@ Currently only `VertexIntegerArray` has additional settings:
 
 * `VertexIntegerCount` defines the size and content of the integer array passed to the vertex shader. This must be a 32-bit integer value, so the visualizer can request one thousand, ten thousand, a million, or any other number of values. Typically, very high values aren't that useful, and the VertexShaderArt website limits users to a maximum value of 100,000.
 
-* `ArrayDrawingMode` defines how the output vertices are drawn. These are defined by OpenGL and include the following settings:
+* `ArrayDrawingMode` defines how the output vertices are drawn. These are defined by OpenGL (visual [examples](https://webglfundamentals.org/webgl/lessons/webgl-points-lines-triangles.html)):
   * `Points`
   * `Lines`
   * `LineStrip`
@@ -41,7 +41,7 @@ Currently only `VertexIntegerArray` has additional settings:
 
 ## The [AudioTextures] Section
 
-If the visualizer is audio-responsive, this section lists the uniform names of audio textures that will be used by the shaders. Unlike the first version, you _must_ use these pre-defined uniform names in this file and in your shaders. See _Understanding Audio Textures_ for more details, but the available types and names are:
+If the visualizer is audio-responsive, this section lists the uniform names of audio textures that will be used by the shaders. Unlike the first version, you _must_ use these pre-defined uniform names in this file and in your shaders. See [Understanding Audio Textures](understanding-audio-textures.md) for more details, but the available types and names are:
 
   | AudioTexture typename | Fixed uniform name |
   |---|---|
@@ -61,7 +61,7 @@ Custom fixed-value or random-value `float` uniforms can be defined. These are pa
 
 Note that due to mathematical quirks of the IEEE `double` data type, the true maximum value will always be very slightly smaller than the requested value (specifically, 0.0000000004656612875245796924106 less... likely irrelevant for visualization purposes).
 
-See also _Shader Basics_ for other uniforms provided by the program such as `time` and `frame` and several random numbers.
+See also [Shader Basics](shader-basics.md) for a complete list of other uniforms provided by the program such as `time` and `frame` and various random numbers.
 
 ## The [Textures] Section
 
@@ -73,25 +73,25 @@ The Volt's Laboratory archive file provided with each release includes the textu
 
 ## The [Videos] Section
 
-As of version 4.3.0, the program can load any video that ffmpeg is able to play (I have only tested with h.264-encoded MP4 files, and the OGV and WEBM files from Shadertoy). Audio is not supported. These are specified the same way image textures are defined, with `uniform:filename.ext` entries, and if the same uniform name is listed multiple times the program will choose a video at random.
+As of version 4.3.0, the program can load any video that FFmpeg is able to play (I have only tested with h.264-encoded MP4 files, and the OGV and WEBM files from Shadertoy). Audio is not supported. These are specified the same way image textures are defined, with `uniform:filename.ext` entries, and if the same uniform name is listed multiple times the program will choose a video at random.
 
-In addition to the requested uniform name, the program will generate three more uniforms by adding `_duration`, `_progress` and `_resolution` suffixes to the specified uniform name. Duration is a float representing the total length of the video. Progress is a normalized (0 to 1) value indicating the current playback position. Resolution is a vec2 representing the width and height of the video data.
+In addition to the requested uniform name, the program will generate three more uniforms by adding `_duration`, `_progress` and `_resolution` suffixes to the specified uniform name. Duration is a `float` representing the total length of the video. Progress is a normalized (0 to 1) value indicating the current playback position. Resolution is a `vec2` representing the width and height of the video data.
 
-Generally you want VERY small, low bitrate videos. Like image textures, you should let the shader do the work of upscaling and manipulating. The Volt's Laboratory archive file includes three sample videos in the texture directory, and these are only 640x360 at 30FPS. Some of the videos offered on the Shadertoy website are even smaller than this. Those are also available from the Volt's Laboratory repository (Shadertoy LustreCreme.ogv is 400x300, Shadertoy Britney.webm is 512x396 at just 64k bit-rate and 25FPS, Shadertoy VanDamme.webm is 640x360 at 64k, and Shadertoy GoogleChrome.ogv is also 640x360).
+Generally you want VERY small, low bitrate videos. Like image textures, you should let the shader do the work of upscaling and manipulating. The Volt's Laboratory archive file includes three sample videos in the texture directory, and these are only 640x360 at 30FPS. Some of the videos offered on the Shadertoy website are even smaller than that. (I no longer ship those, they simply weren't interesting from a music visualizer standpoint, but you can download them with links provided [here](https://shadertoyunofficial.wordpress.com/2019/07/23/shadertoy-media-files/) if you want them.)
 
-The basic ffmpeg libraries are installed in an `ffmpeg` directory inside the app install directory. Here is an ffmpeg command you can use to re-encode `input.mp4` as `output.mp4` with a lower resolution, 30 FPS, a 349k bit-rate, and stripping all audio data. (Other file types would require different switches.)
+The basic FFmpeg libraries are installed in an `ffmpeg` directory inside the app install directory. Here is an FFmpeg command you can use to re-encode `input.mp4` as `output.mp4` with a lower resolution, 30 FPS, a 349k bit-rate, and stripping all audio data. (Other file types would require different switches.)
 
 ```
 ffmpeg -i input.mp4 -r 30 -vf scale=640:360 -an -c:v libx264 -preset medium -b:v 349k output.mp4
 ```
 
-Note also the `VideoFlip` setting in the `[setup]` section of the `mhh.conf` configuration file. Most file formats have the origin (pixel 0,0) at the top left corner, but OpenGL's origin is at the bottom left. The options for this setting are `Internal` (which seems to perform best in my testing), `FFmpeg` which flips the buffer during decoding (surprising this is slower!), or `None` if you only use custom videos that are saved inverted (super fast!), or you write your own shaders that invert the Y coordinate for texel fetch (`1.0 - resolution.y`). You could also use `None` if you only use abstract videos and you don't care if they're inverted or not.
+Note also the `VideoFlip` setting in the `[setup]` section of the `mhh.conf` application configuration file. Most file formats have the origin (pixel 0,0) at the top left corner, but OpenGL's origin is at the bottom left. The options for this setting are `Internal` (which seems to perform best in my testing), `FFmpeg` which flips the buffer during decoding (surprising this is slower!), or `None` if you only use custom videos that are saved inverted (super fast!), or you write your own shaders that invert the Y coordinate for texel fetch (`1.0 - resolution.y`). You could also use `None` if you only use abstract videos and you don't care if they're inverted or not.
 
 ## The [FX-Blacklist] Section
 
 The post-processing FX shaders sometimes don't work well with certain visualizations, so this section lets a visualizer list the names of any FX shaders that should never be applied. It's just a simple list of the FX config filenames.
 
-A future release will allow you to specify * which blocks _all_ FX processing. This is useful for visualizations that should only be loaded with specific FX shaders (and never without), since playlists and the command-line can specify a visualizer / FX combination directly.
+A future release will allow you to specify `*` which blocks _all_ FX processing. This is useful for visualizations that should only be loaded with specific FX shaders (and never without), since playlists and the command-line can specify a visualizer / FX combination directly.
 
 ## Advanced: The [MultiPass] Section
 
@@ -124,7 +124,7 @@ Buffers are just single numbers. You can draw to the same buffer multiple times 
 
 The texture of any draw buffer used in a previous pass can be specified in a comma-delimited list. The uniforms are always named `input0`, `input1` and so on, where the number at the end matches the buffer number. So if the pass specifies `1,3` the shader will receive textures in uniforms named `input1` and `input3`. If no inputs are required (commonly on the first pass), use an asterisk in this column.
 
-The repository's test-content [multipass](https://github.com/MV10/monkey-hi-hat/blob/master/testcontent/multipass.conf) visualizer is an example of this (it is the same as the _oil_slick_ visualization in Volt's Laboratory and the _content_ archive provided in the release downloads).
+The repository's test-content [multipass](https://github.com/MV10/monkey-hi-hat/blob/master/testcontent/multipass.conf) visualizer is an example of this (it is the same as the *oil_slick* visualization content from Volt's Laboratory).
 
 ### Input-Buffer Letters
 

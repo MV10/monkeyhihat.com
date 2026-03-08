@@ -6,7 +6,7 @@ The term "texture" in OpenGL is misleading, because these kinds of data buffers 
 
 However, the paradigm is still a two-dimensional image buffer. The layout of the data depends on the specific Audio Texture.
 
-**IMPORTANT:** Your system volume setting influences the "strength" of the audio signal reflected in these textures (loopback only; line-in or mic input is not tied to the system volume). The audio-loopback configuration doesn't "know" what the original audio source level is, it only reflects the actual output (technically, _all_ output, not just music -- system notification sounds will be included, for example). My preference is to leave the system volume at 100% and use my stand-alone amplifier volume controls to adjust speaker volume. You can see this effect in action by running the eyecandy `demo` program's _history_ mode, then playing with the system volume while it scrolls the various texture types.
+> **IMPORTANT:** Your system volume setting influences the "strength" of the audio signal reflected in these textures (loopback only; line-in or mic input is not tied to the system volume). The audio-loopback configuration doesn't "know" what the original audio source level is, it only reflects the actual output (technically, _all_ output, not just music -- system notification sounds will be included, for example). My preference is to leave the system volume at 100% and use my stand-alone amplifier volume controls to adjust speaker volume. You can see this effect in action by running the eyecandy demo program's _history_ mode, then playing with the system volume while it scrolls the various texture types.
 
 ## Available Types
 
@@ -25,6 +25,8 @@ Currently these Audio Textures are available using the indicated uniform names:
 The "History" textures have current data in row zero, and each time the texture is updated, the data is "scrolled" upwards before the new data is generated. Thus, increasing the y-offset is going backwards in time. How much history is available is a function of the texture height and the audio sampling rate. It is generally about four seconds.
 
 All currently available audio textures are 4-channel (RGBA) 32-bit floats. The data is in the green `g` channel, with one exception: `AudioTexture4ChannelHistory` uses all four channels (`rgba`).
+
+> Shadertoy audio textures use the red `r` channel (alternately, channel `x`). Forgetting to change the code to read the green channel is a common source of confusion when porting a Shadertoy program to Monkey Hi Hat.
 
 Most texture widths match the sample count, defined in the audio config, and the config also defines row counts for history textures. Of course, once they're in the shader, everything is normalized to the 0 to 1 range.
 

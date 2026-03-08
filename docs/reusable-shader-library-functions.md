@@ -43,11 +43,11 @@ Many Shadertoy programs use a `Common` tab for code that is shared by the `Buffe
 
 The two main benefits of the Shadertoy model are that `#define` commands in the `Common` tab are available in each shader tab, and it isn't necessary to declare the library functions in the shader code. Monkey Hi Hat shader programs can't access `#define` declarations, and empty function declarations are required.
 
-On the other hand, Monkey Hi Hat library functions can declare and use uniforms, which isn't possible in Shadertoy. For an example of this, see the Volt's Laboratory library _fonts_v1a_ which declares the font texture as `uniform sampler2D font` and uses it throughout the library code. This was originally a Shadertoy program called [Font Renderer](https://www.shadertoy.com/view/cdtBWl), written by user foodini, and you can see in the `Common` tab that a reference to the texture must be passed with every function call.
+On the other hand, Monkey Hi Hat library functions can declare and use uniforms, which isn't possible in Shadertoy. For an example of this, see the Volt's Laboratory library *fonts_v1a* which declares the font texture as `uniform sampler2D font` and uses it throughout the library code. This was originally a Shadertoy program called [Font Renderer](https://www.shadertoy.com/view/cdtBWl), written by user foodini, and you can see in the `Common` tab that a reference to the texture must be passed with every function call.
 
 ## Example
 
-The repository's [`vertint.conf`](https://github.com/MV10/monkey-hi-hat/blob/master/testcontent/vertint.conf) test-content visualizer references the vertex shader [`vertint.vert`](https://github.com/MV10/monkey-hi-hat/blob/master/testcontent/vertint.vert) and the library shader [`vert_library.glsl`](https://github.com/MV10/monkey-hi-hat/blob/master/testcontent/vert_library.glsl). The `vertfrag.conf` also references this library, but links it to the fragment stage instead.
+The repository's *[vertint.conf](https://github.com/MV10/monkey-hi-hat/blob/master/testcontent/vertint.conf)* test-content visualizer references the vertex shader *[vertint.vert](https://github.com/MV10/monkey-hi-hat/blob/master/testcontent/vertint.vert)* and the library shader *[vert_library.glsl](https://github.com/MV10/monkey-hi-hat/blob/master/testcontent/vert_library.glsl)*. The *vertfrag.conf* also references this library, but links it to the fragment stage instead.
 
 The library shader defines a pair of color-conversion functions:
 

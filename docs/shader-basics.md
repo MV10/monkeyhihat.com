@@ -6,7 +6,7 @@ Writing OpenGL shaders is a very complex topic. The language (GLSL) is unique, t
 
 If you aren't sure where to begin, I strongly recommend Gregg Man's VertexShaderArt [tutorial](https://www.youtube.com/@vertexshaderart8178/videos) videos for a nice introduction to some of the basics of shader programming. It's specific to the unique integer-input approach used by `VertexIntegerArray` shaders, but a lot of the math techniques and other considerations are broadly applicable.
 
-For fragment-oriented shaders like those found on Shadertoy, you may want to read some of the introductory chapters of Nathan Vaughn's [tutorial](https://inspirnathan.com/posts/47-shadertoy-tutorial-part-1/). (It can be difficult to learn from Shadertoy content; commenting is often poor or non-existent, and some programmers enjoy the challenge of writing the smallest possible code -- what they call _golfing_ -- which can make the code nearly impossible to decipher. Sad but true, particularly since the original source code has little or no direct correlation to compiled memory consumption.)
+For fragment-oriented shaders like those found on Shadertoy, you may want to read some of the introductory chapters of Nathan Vaughn's [tutorial](https://inspirnathan.com/posts/47-shadertoy-tutorial-part-1/). (It can be difficult to learn from Shadertoy content; commenting is often poor or non-existent, and some programmers enjoy the challenge of writing the smallest possible code -- what they call _golfing_ -- which can make the code nearly impossible to decipher. Unfortunate since the original source code has little correlation to compiled memory consumption.)
 
 ## OpenGL Version and Precision Directives
 
@@ -31,17 +31,19 @@ There are a number of pre-defined inputs and uniforms provided by monkey-hi-hat,
 
 Every monkey-hi-hat vertex and fragment shader has access to these uniforms:
 
-* `uniform float time` is the number of seconds elapsed since the shader started running
-* `uniform float frame` is frame count float for the current visualizer (0-based)
-* `uniform vec2 resolution` is the width and height of the display area in pixels
-* `uniform vec4 date` is the year, month, date, and seconds since midnight (like Shadertoy iDate)
-* `uniform vec4 clocktime` is hour (local timezone), minute, seconds, and the UTC hour (no timezone)
-* `uniform float randomseed` is a normalized float (0-1) randomly generated at program startup
-* `uniform float randomrun` is a normalized float (0-1) randomly generated at visualization startup
-* `uniform vec4 randomrun4` is four normalized floats (0-1) randomly generated at visualization startup
-* `uniform float randomnumber` is a normalized float (0-1) randomly generated for each new frame
-* `uniform float fxactive` is a 0/1 flag indicating whether a post-processing FX is running (v4.2.0)
-* `uniform float silence` is a 0/1 flag indicating whether the engine detected silence (v4.4.0)
+| Type | Name | Description |
+|---|---|---|
+| `float` | `time`         | number of seconds elapsed since the shader started running               |
+| `float` | `frame`        | frame count float for the current visualizer (0-based)                   |
+| `vec2` | `resolution`    | width and height of the display area in pixels                           |
+| `vec4` | `date`          | year, month, date, and seconds since midnight (like Shadertoy `iDate`)   |
+| `vec4` | `clocktime`     | hour (local timezone), minute, seconds, and the UTC hour (no timezone)   |
+| `float` | `randomseed`   | a normalized float (0-1) randomly generated at program startup           |
+| `float` | `randomrun`    | a normalized float (0-1) randomly generated at visualization startup     |
+| `vec4` | `randomrun4`    | four normalized floats (0-1) randomly generated at visualization startup |
+| `float` | `randomnumber` | a normalized float (0-1) randomly generated for each new frame           |
+| `float` | `fxactive`     | a 0/1 flag indicating whether a post-processing FX is running (v4.2.0)   |
+| `float` | `silence`      |  a 0/1 flag indicating whether the engine detected silence (v4.4.0)      |
 
 Of course, you are also free to defined fixed-value and random-value inputs (see _Visualization Configuration_ and _Post-Processing FX_ for more information).
 
@@ -106,7 +108,7 @@ The `iChannel0` replacement assumes the original Shadertoy code was reading audi
 
 Since monkey-hi-hat doesn't have mouse support, setting `iMouse` to any constant seems to work for most shaders -- typically they respond to changes in the mouse position. In Shadertoy, the mouse x,y coordinates map to the resolution (they aren't normalized values).
 
-There are a few Shadertoy uniforms which have no corresponding monkey-hi-hat equivalent. For example, `iChannelTime` refers to either the amount of time an input video or a Soundcloud track has been playing. Neither of these are available in Shadertoy, and you can normally just use the `time` uniform instead.
+There are a few Shadertoy uniforms which have no corresponding monkey-hi-hat equivalent. For example, `iChannelTime` refers to either the amount of time an input video or a Soundcloud track has been playing. Typically I will just use the `time` uniform instead, although for videos `_duration` and `_progress` uniforms are available prefixed by the texture sampler uniform name.
 
 Finally, just as we advise for VertexShaderArt conversions, look for `#define` settings and constants which can be converted to fixed- or random-value settings with the visualizer `[uniforms]` section. These will add variety to the visualizations which is not readily available in the originals.
 
@@ -126,6 +128,44 @@ Additionally, monkey-hi-hat can modify any draw-buffer at any time. It is often 
 
 ## Using Shadertoy Programs as FX
 
-Many Shadertoy programs that use a static image texture as input are candidates for conversion to a monkey-hi-hat FX shader. A good example is the _staircase_ FX in Volt's Laboratory. The original Shadertoy program, [Cellular Blocks](https://www.shadertoy.com/view/ltySRt) by the genius shader author named Shane, is one such example. The original uses the rusty metal texture as `iChannel0`, but in monkey-hi-hat, that input is replaced by the output of another shader -- _any_ other shader. The results are pretty interesting, to say the least.
+Many Shadertoy programs that use a static image texture as input are candidates for conversion to a monkey-hi-hat FX shader. A good example is the [staircase FX](https://github.com/MV10/volts-laboratory/blob/master/fx/staircase.conf) in Volt's Laboratory. The original Shadertoy program, [Cellular Blocks](https://www.shadertoy.com/view/ltySRt) by the genius shader author named Shane, is one such example. The original uses the rusty metal texture as `iChannel0`, but in monkey-hi-hat, that input is replaced by the output of another shader -- _any_ other shader. The results are pretty interesting, to say the least.
 
 Keep this approach in mind as you look for ideas for new FX shaders.
+
+## GPUs Are Not Identical
+
+The _Introduction_ page mentions I don't intend to support Intel's integrated GPUs, but even AMD and NVIDIA have their hardware and driver quirks. 
+
+### Pseudo-Random Number Generators
+
+An easy-to-see example is exhibited by zguerrero's Shadertoy creation [SlowMo Fluid](https://www.shadertoy.com/view/ltdGDn), which is the basis for the _splash_ FX used by monkey-hi-hat. The following screenshots are from Shadertoy in the browser, but the monkey-hi-hat FX exhibits the exact same behavior.
+
+> UPDATE 2025-AUG-13: Shadertoy user morimea (aka danilw on Github) pointed out this isn't actually an AMD bug and many NVIDIA GPUs exhibit the same behavior. It is the sin-hash function itself which is unreliable, as noted on his Github [README](https://github.com/danilw/GPU-sin-hash-stability), and documented further in his Medium [article](https://arugl.medium.com/hash-noise-in-gpu-shaders-210188ac3a3e). The rest of this section is as I wrote it originally in 2023, and two years later people are still using the broken hash, so it's worth being aware of.
+
+This is how it looks on my primary desktop with a dedicated NVIDIA RTX-2060 GPU:
+
+![image](images/random-nvidia.png)
+
+But when I run it on the living room TV's miniPC, which uses an integrated AMD Radeon 780M, it only ever generates two big, uninteresting bubbles (and another user on Shadertoy reported his Mac M1 GPU produces the same incorrect results):
+
+![image](images/random-amd.png)
+
+Bear in mind that Shadertoy can't generate random numbers, so they _should_ be identical. Why does this happen? I suspect a roundoff or similar numeric issue with this function, which is a standard way of generating a pseudo-random number (it isn't actually random in any sense, it's just "large and unexpected" -- but always the same):
+
+```glsl
+float hash(float n)
+{
+   return fract(sin(dot(vec2(n,n) ,vec2(12.9898,78.233))) * 43758.5453);  
+}  
+```
+
+For what it's worth, this exact calculation (and the occasional minor variation, like `vec2(n, -n)`) shows up in [many](https://gist.github.com/PossiblyAShrub/42f446bc2956c3d1800da7f5e111086e#file-donut-txt-L26) other [places](https://jaksa.wordpress.com/2014/09/02/writing-a-parallel-sort-on-glsl-heroku-com/) all across the web, it isn't something specific to Shadertoy. In fact, it is also in other Monkey Hi Hat FX and visualizations where it _does_ work properly. I spent a lot of time searching and I have no idea where it came from originally. (It seems to be related to the [xorshift](https://en.wikipedia.org/wiki/Xorshift) algorithm and its variants, but not exactly the same.)
+
+The fix, incidentally, was to reference a noise-texture rather than the calculation. Then both NVIDIA and AMD GPUs showed the same behaviors.
+
+### Other References
+
+The Shadertoy user FabriceNeyret2 has some older articles on his [Shadertoy Unofficial](https://shadertoyunofficial.wordpress.com/) blog that are worth reading. In particular, he describes a lot of bugs and compatibility issues that sound similar to the _SlowMo Fluid_ example above in his 2016 article [Compatibility Issues in Shadertoy WebGLSL](https://shadertoyunofficial.wordpress.com/2016/07/22/compatibility-issues-in-shadertoy-webglsl/) (and obviously I think they probably apply outside the context of WebGL).
+
+Github user danilw also maintains a very large and detailed list of [GPU bugs](https://github.com/danilw/GPU-my-list-of-bugs), including this specific hash function problem (which is really a problem with the `sin` implementation).
+
