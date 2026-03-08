@@ -11,7 +11,7 @@ Rather than relying on playback (and system volume level), as is normally done f
 
 #### Windows Line-Level Audio
 
-Under the windows sound API (WASAPI), a device will not be "known" until it is actually used. After that it will be remembered even if it is not connected, so for this to work you should plug something which generates output into line-in or mic-in at least once.
+Under the Windows Sound API (WASAPI), a device will not be "known" until it is actually used. After that it will be remembered even if it is not connected, so for this to work you should plug in something which actively generates output into line-in or mic-in at least once.
 
 You will need to know the "Friendly Name" of the device, which goes into the configuration file as the `CaptureDeviceName` in the `[windows]` section. Run MHH with the `--devices` command. You will see output similar to this:
 
@@ -68,7 +68,7 @@ Capture devices:
   Starship/Matisse HD Audio Controller Analog Stereo
   Monitor of TU104 HD Audio Controller Digital Stereo (HDMI 2)
 
-Default  devices:
+Default devices:
   Playback: TU104 HD Audio Controller Digital Stereo (HDMI 2)
   Capture: Starship/Matisse HD Audio Controller Analog Stereo
 
@@ -95,11 +95,11 @@ CaptureDeviceName=Monitor of TU104 HD Audio Controller Digital Stereo (HDMI 2)
 
 ## Streaming Images
 
-Spout and NDI are two popular protocols for sharing realtime image data between applications. Spout is Windows-only and runs on the local PC, whereas NDI is cross-platform, it can run over networks, dedicated hardware is available, and it can integrate with professional-grade mixing and broadcast systems.
+Spout and NDI are two popular protocols for sharing realtime image data between applications. [Spout](https://spout.zeal.co/) is Windows-only and runs on the local PC. [NDI](https://ndi.video/) is cross-platform, it can run over networks, dedicated hardware is available, and it can integrate with professional-grade mixers, broadcast systems, and even video camera feeds.
 
 You can only use one of the streaming systems at a time. You can send or receive, but not both. Sending is as easy as turning it on. Receiving will require writing custom shaders to use the received images. Audio is not supported.
 
-OSI is another popular cross-platform send/receive protocol which is similar to NDI. We are evaluating adding support.
+[OMT](https://www.openmediatransport.org/) is another popular cross-platform send/receive protocol which is similar to NDI. I am evaluating adding support.
 
 
 ## Spout Support
@@ -124,7 +124,7 @@ A placeholder image is shown until the sender is available. If the sending progr
 
 ## NDI Support
 
-NDI is a cross-platform protocol. Enabling NDI output to other NDI devices locally and on the LAN is easy. There is an `[ndi]` section in the config file. Change the `NDISender` setting to true, and if desired, specify an `NDIDeviceName`, otherwise the name _Monkey Hi Hat_ will be used. You can also specify a comma-delimited `NDIGroupList` to limit where this output is visible.
+NDI is a cross-platform protocol. Enabling NDI output to other NDI devices locally and on the LAN is easy. There is an `[ndi]` section in the `mhh.conf` application config file. Change the `NDISender` setting to true, and if desired, specify an `NDIDeviceName`, otherwise the name _Monkey Hi Hat_ will be used. You can also specify a comma-delimited `NDIGroupList` to limit where this output is visible.
 
 ```
 [ndi]

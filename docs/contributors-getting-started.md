@@ -2,7 +2,7 @@
 
 ## Welcome
 
-If you're a .NET developer who is interested in fixes, changes, and improvements to Monkey Hi Hat or its related repos, this page will help you get oriented. I'd recommend creating a new Issue to discuss your ideas and plans before you spend much time working on the code, but I very definitely would welcome contributor PRs!
+If you're a .NET developer who is interested in fixes, changes, and improvements to Monkey Hi Hat or its related repos, this page will help you get oriented. I'd recommend creating a new Issue to discuss your ideas and plans before you spend much time working on the code, but I definitely welcome contributor PRs!
 
 ## Getting Started
 
@@ -10,11 +10,11 @@ As of version 5.2.0, Linux is officially supported.
 
 Working on MHH should be as simple as forking and cloning the repo, then firing up Visual Studio or JetBrains Rider. I assume anyone interested in development has already installed and run the app, which means you should already have the [volts-laboratory](https://github.com/MV10/volts-laboratory) content (visualizers, FX, etc) in your `C:\Program Data\mhh-content` or `/opt/mhh-content` directory. You will want to modify your config file to point there. 
 
-I won't accept PRs of the config files unless you're (a) adding something new or fixing something (start an Issues discussion about it first), and (b) have applied *only* those changes to the config files I distribute now, and (c) you're also willing to update the install processes to support the new config. Read the page on configuration to find out how to reference a stand-alone config that isn't part of source control.
+I won't accept PRs with changes to the config files unless you're (a) adding something new or fixing something (start an Issues discussion about it first), and (b) have applied *only* those changes to the config files I distribute now, and (c) you're also willing to update the install processes to support the changes. Read the page on configuration to find out how to reference a stand-alone config that isn't part of source control.
 
 You should probably have at least a passing familiarity with OpenGL programming (GLSL, or at least something like Shadertoy's WebGL). There are definitely areas of the codebase that never touch on that at all, but the bulk of it is really in the weeds on rendering sequences (particularly the intricacies of buffer-handling) and GL resource-handling.
 
-If you're not familiar with multi-threaded applications, unsafe code, or careful disposal of unmanaged resources, I'd advise extreme caution here, and please mention that to me when you open an Issue. For the most part, if you understand `async/await` and `Task` usage (for example, you understand the difference between `WhenAll` and `WhenAny` and what "aggregate exception" means, and why async and parallelism are different things), you should be fine. OpenGL is not even a little bit thread-safe, and never will be, but most of the tricky stuff happens in the separate `eyecandy` audio/OpenGL library that MHH uses.
+If you're not familiar with multi-threaded applications, unsafe code, or careful disposal of unmanaged resources, I'd advise extreme caution here, and please mention that to me when you open an Issue. For the most part, if you understand `async/await` and `Task` usage (for example, you understand the difference between `WhenAll` and `WhenAny` and what "aggregate exception" means, and why async and parallelism are different things in the .NET concurrency model), you should be fine. OpenGL is not even a little bit thread-safe, and never will be, but most of the tricky stuff happens in the separate `eyecandy` audio/OpenGL library that MHH uses.
 
 ## Solution Structure
 
@@ -28,7 +28,7 @@ MHH is a .NET console program, so at the top level you'll find a `Program.cs` wi
 
 ### ConfigFiles Directory
 
-This is where the default program configuration files are stored (`mhh.conf` and the debug variation), as well as `version.txt` used by the installer. Check out the readme for details. Notably, you'll see a lot of references to `Program.AppConfig` which is a public static object exposing the parsed program configuration.
+This is where the program's template / default configuration files are stored (`mhh.conf` and the debug variation), as well as `version.txt` used by the installer. Check out the readme for details. Notably, you'll see a lot of references in the code to `Program.AppConfig` which is a public static object exposing the parsed program configuration. The comments in `mhh.conf` will help you understand what is configurable.
 
 ### Hosting Directory
 
@@ -82,9 +82,9 @@ Since MHH is cross-platform, a few features need OS-specific handling. The `Prog
 
 In MHH parlance, a vertex source is what feeds data into the vertex stage of the shader pipeline. Currently there are only two, and these are documented under _Creating Visualizations_. Pretty simple stuff.
 
-## Related Repositories
+## My Related Repositories
 
-In addition Monkey Hi Hat itself, I have several related repos you should be at least passingly familiar with.
+In addition to Monkey Hi Hat itself, I have several related repos you should be at least passingly familiar with.
 
 | Repository | Description |
 |---|---|
@@ -108,7 +108,7 @@ In addition to my eyecandy library, MHH itself is directly dependent upon these 
 | [Tmds.DBus](https://github.com/tmds/Tmds.DBus) | Linux audio track info |
 | [WindowsMediaController](https://github.com/DubyaDude/WindowsMediaController) | Windows audio track info |
 
-The eyecandy library adds the following dependencies, although MHH only uses OpenTK directly:
+The eyecandy library adds the following dependencies:
 
 | Repository | Description |
 |---|---|
@@ -116,6 +116,10 @@ The eyecandy library adds the following dependencies, although MHH only uses Ope
 | [NAudio](https://github.com/naudio/NAudio) | Windows audio-capture support |
 | [OpenTK](https://github.com/opentk/opentk) | OpenGL and OpenAL wrappers and helpers |
 | [Serilog](https://github.com/serilog) | Logging |
+
+## Logging
+
+Given the timing-sensitive and looping-intensive nature of this program good but careful logging is essential. Start by reading the [Logging](logging.md) documentation. Most classes create a named logger instance matching the class name. Carefully consider the log level for any output you generate, particularly if the output happens in the high-frequency render loop. Get familiar with the various eyecandy log sources including OpenGL internal error logging, these can be immensely helpful during debugging. If you create new log categories, be sure to document them in your pull request, as they should all be listed in the _Logging_ documentation. 
 
 ## Conclusion
 
