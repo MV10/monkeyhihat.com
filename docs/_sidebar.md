@@ -6,8 +6,8 @@
 
 **Options and Controls** 
 * [Post-Install Instructions](post-install-instructions)
-* [App Configuration](app-configuration)
 * [Commands and Keys](commands-and-keys)
+* [App Configuration](app-configuration)
 
 **Content Creation** 
 * [Creating Visualizations](creating-visualizations)

@@ -97,6 +97,3 @@ Some keys are only available or change behavior in certain modes:
 | `Backspace` | Immediate screenshot (jpg format)                                    
 | `Spacebar` | Screenshot: saves after the `--jpg wait` or `--png wait` commands    
 
-## Errors and Logging
-
-By default, warnings and errors are written to `mhh.log` in the application directory. The log file is overwritten each time the program is executed. Log level can be changed on-the-fly with the `--log` switch. The config file has a lot of features used to control logging, especially when troubleshooting. See the [Logging](logging.md) page for more information.

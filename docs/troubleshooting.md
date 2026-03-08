@@ -10,6 +10,10 @@ Please create a Github account and post a new issue with the details (use the `I
 
 You can also email me at [mcguirev10@gmail.com](mailto:mcguirev10@gmail.com?subject=Help%20with%20Monkey%20Hi%20Hat).
 
+## Errors and Logging
+
+By default, warnings and errors are written to `mhh.log` in the application directory. The log file is overwritten each time the program is executed. Log level can be changed on-the-fly with the `--log` switch. The config file has a lot of features used to control logging, especially when troubleshooting. See the [Logging](logging.md) page for more information.
+
 ## Installation Issues
 
 No known issues.

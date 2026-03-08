@@ -22,6 +22,10 @@ In addition to the basic visualizer, version 2.0 introduced multipass visualizer
 
 Refer to the _Visualization Configuration_ section for detailed information about the file format and available settings. This page describes the process at a more conceptual level.
 
+It's _extremely_ useful to have an editor that "speaks" GLSL, the OpenGL Shader Language. There are probably plugins for popular editors like Notepad++ or (shudder) Visual Studio Code, but since I use the grown-up version of Visual Studio, I strongly recommend Daniel Scherzer's [GLSL language integration](https://marketplace.visualstudio.com/items?itemName=DanielScherzer.GLSL2022) extension.
+
+This will recognize `.vert`, `.frag`, and `.glsl` filename extensions, and It Just Works. It's a pretty nice workflow to run Monkey Hi Hat on another monitor or off to the side in a window, and use Visual Studio to modify the shader, then just issue an `--reload` command to immediately see the results.
+
 ## Visualizer Types (Vertex Source Type)
 
 Currently there are two available types of visualizers, which correspond to their Vertex Source Type. (In earlier versions, these were called Visualizer Type, which is somewhat misleading as to their purpose.)

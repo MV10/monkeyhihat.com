@@ -35,6 +35,11 @@
     --home-link-color:#7da8d0;
     --toggle-color:#7da8d0;
     --resizer-color:125,168,208;
+    --code-border:var(--border);
+    --kbd-bg:#253e63;
+    --kbd-border:#4a72a8;
+    --kbd-border-bottom:#162840;
+    --kbd-shadow:#162840;
 }
 body.light {
     --sidebar-bg:#f6f8fa;
@@ -57,6 +62,11 @@ body.light {
     --home-link-color:#4a7ab5;
     --toggle-color:#57606a;
     --resizer-color:80,120,170;
+    --kbd-bg:var(--code-bg);
+    --kbd-border:var(--border);
+    --kbd-border-bottom:color-mix(in srgb,var(--border) 70%,#000 30%);
+    --kbd-shadow:color-mix(in srgb,var(--border) 70%,#000 30%);
+    --code-border:#b0bcc8;
 }
 
 /* ─── Reset ─── */
@@ -244,7 +254,7 @@ body.light .content-resizer.dragging{background:rgba(var(--resizer-color),0.55)}
 .markdown-section li{margin:4px 0}
 .markdown-section code{
     background:var(--code-bg);
-    border:1px solid var(--border);
+    border:1px solid var(--code-border);
     border-radius:6px;
     padding:0.2em 0.4em;
     font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
@@ -274,6 +284,21 @@ body.light .content-resizer.dragging{background:rgba(var(--resizer-color),0.55)}
 .markdown-section table tr:nth-child(2n) td{background:var(--table-alt-bg)}
 .markdown-section img{max-width:100%;border-radius:6px}
 .markdown-section hr{border:none;border-top:1px solid var(--border);margin:24px 0}
+.markdown-section kbd{
+    display:inline-block;
+    padding:0.15em 0.5em;
+    font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    font-size:0.8em;
+    line-height:1.4;
+    color:var(--text);
+    background:var(--kbd-bg);
+    border:1px solid var(--kbd-border);
+    border-bottom-color:var(--kbd-border-bottom);
+    border-radius:6px;
+    box-shadow:inset 0 -1px 0 var(--kbd-shadow);
+    white-space:nowrap;
+    vertical-align:0.1em;
+}
 
 /* ─── Mobile TOC button (hidden on desktop) ─── */
 .mobile-toc-btn{

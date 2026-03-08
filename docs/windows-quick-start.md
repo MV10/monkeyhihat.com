@@ -2,14 +2,14 @@
 
 ## Installation
 
-If you use the install program (available on the release page), that is ALL you really need to know.  
+The Windows install program is fully automatic. It must run as Administrator and will prompt you for a password if your account is not in the Administrators group.
 
-It will ask you a few yes/no questions, then it will download and install the app itself, visualization content, and if necessary, the .NET runtime. The installer can also update older versions or uninstall the current version.
-
-Of course, you will need a source of music such as Spotify, an MP3 player, Soundcloud, or whatever else you prefer. Spotify has a decent native client ([download](https://www.spotify.com/de-en/download/windows/)) which has the benefit that it allows remote-control of music playing through your PC from any other client on the same network -- such as your phone or a laptop.
+It will ask you a few yes/no questions, then it will download and install the app itself, visualization content, various support libraries, and if necessary, the .NET runtime. The installer can also update older versions or cleanly uninstall the current version and all related files.
 
 Previously this section detailed manual installation, but that's no longer necessary or practical, and it was creating confusion among some new users. Unlike earlier versions, no audio loopback libraries or third-party drivers are required which were also manual steps required by older versions.
 
-## Using Monkey Hi Hat
+## Next Steps
 
-The Introduction page has a short walk-through for testing your initial setup, but for more details and options, refer to the [Using Monkey Hi Hat](using-monkey-hi-hat.md) section to proceed.
+* Start by reading [Using Monkey Hi Hat](using-monkey-hi-hat.md) to test your installation
+* That section also helps you understand and choose remote control options
+* A few popular config changes are explained in [Post Install Instructions](post-install-instructions.md)
