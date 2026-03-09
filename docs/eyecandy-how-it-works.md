@@ -1,4 +1,4 @@
-# Eyecandy: How It Works
+# How Eyecandy Works
 
 ## Overview
 

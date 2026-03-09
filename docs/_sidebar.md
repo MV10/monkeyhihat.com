@@ -25,11 +25,11 @@
 * [Troubleshooting](troubleshooting)
 * [Changelog](changelog)
 
-**Eyecandy Library**
-* [Introduction](eyecandy-introduction.md)
-* [How It Works](eyecandy-how-it-works.md)
-* [Thread Safety](eyecandy-thread-safety.md)
-* [Windowed Usage](eyecandy-windowed-usage.md)
-* [Audio-Only Usage](eyecandy-audio-only-usage.md)
-* [Changelog](eyecandy-changelog.md)
+**Audio Texture Library**
+* [Eyecandy Introduction](eyecandy-introduction.md)
+* [How Eyecandy Works](eyecandy-how-it-works.md)
+* [Eyecandy Thread Safety](eyecandy-thread-safety.md)
+* [Using With OpenTK Windows](eyecandy-windowed-usage.md)
+* [Using Audio-Only Processing](eyecandy-audio-only-usage.md)
+* [Eyecandy Changelog](eyecandy-changelog.md)
  

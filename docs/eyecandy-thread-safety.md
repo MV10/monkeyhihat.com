@@ -1,4 +1,4 @@
-# Eyecandy: Thread Safety
+# Eyecandy Thread Safety
 
 The eyecandy library is multi-threaded, but OpenGL is not inherently thread-safe. When eyecandy updates audio texture data on background threads, it uses a `Mutex` synchronization object to prevent other threads from changing the OpenGL texture activation / binding settings during updates. Library consumers which perform frequent texture updates should also use `Mutex` synchronization when eyecandy audio capture may be active.
 

@@ -1,4 +1,4 @@
-# Eyecandy: Changelog
+# Eyecandy Changelog
 
 #### v4.3.3 2025-11-02
 * Remove accidental debug output
