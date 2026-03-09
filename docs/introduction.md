@@ -41,7 +41,7 @@ After getting familiar with the program running locally, DJ / VJ users may want 
 
 I welcome both application and content contributions and collaboration. For app programmers, refer to the [Contributors Getting Started](contributors-getting-started.md) page for a quick overview. For OpenGL content programmers, the documentation has many sections under _Content Creation_ to help you get started, and you'll want to review the [README](https://github.com/MV10/volts-laboratory/blob/master/README.md) for the _Volt's Laboratory_ repo where content is stored.
 
-If you're interested in the technical underpinnings, there is some information in the [eyecandy wiki](https://github.com/MV10/eyecandy/wiki), which is the library that powers Monkey Hi Hat, and various articles on my [blog](https://mcguirev10.com/). But at this point, most of the information is here (and in fact, developers interested in eyecandy are directed to this documentation for various aspects of setup and usage).
+If you're interested in the technical underpinnings, there is some information in the [eyecandy section](https://www.monkeyhihat.com/docs/index.php#/eyecandy-introduction), which is the library that powers Monkey Hi Hat, and in various articles on my [blog](https://mcguirev10.com/). But at this point, most of the information is here (and in fact, developers interested in eyecandy are directed to the Monkey Hi Hat documentation for various aspects of setup and usage).
 
 
 ## Hardware Notes

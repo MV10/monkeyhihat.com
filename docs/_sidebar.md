@@ -24,3 +24,12 @@
 * [Logging](logging)
 * [Troubleshooting](troubleshooting)
 * [Changelog](changelog)
+
+**Eyecandy Library**
+* [Introduction](eyecandy-introduction.md)
+* [How It Works](eyecandy-how-it-works.md)
+* [Thread Safety](eyecandy-thread-safety.md)
+* [Windowed Usage](eyecandy-windowed-usage.md)
+* [Audio-Only Usage](eyecandy-audio-only-usage.md)
+* [Changelog](eyecandy-changelog.md)
+ 

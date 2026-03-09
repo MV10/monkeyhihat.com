@@ -2,7 +2,7 @@
 
 ## The Concept
 
-The term "texture" in OpenGL is misleading, because these kinds of data buffers are commonly used to pass non-image data. In our case, we're encoding different kinds of audio information into these buffers. The data ranges from perceived volume level, to the raw PCM waveforms that amplifiers turn into power to move a speaker, to the results of various frequency-analysis algorithm.
+The term "texture" in OpenGL is misleading, because these kinds of data buffers are commonly used to pass non-image data. In our case, we're encoding different kinds of audio information into these buffers. The data ranges from perceived volume level, to the raw PCM waveforms that amplifiers turn into power to move a speaker, to the results of various frequency-analysis algorithm. (For deeper technical details, refer to the [How It Works](eyecandy-how-it-works.md) documentation for the underlying eyecandy audio-texture library.)
 
 However, the paradigm is still a two-dimensional image buffer. The layout of the data depends on the specific Audio Texture.
 
