@@ -5,7 +5,7 @@
 The _Commands and Keys_ documentation shows you all of the command-line options, but that can be overwhelming at first. Here's a quick step-by-step. This assumes you are also using the visualizer and FX content from Volt's Laboratory, which the installer will automatically download and configure.
 
 * Windows: Launch the program with the _Monkey Hi Hat_ icon from your Start Menu or Desktop
-* Linux: Run the `mhh` program in the app directory under your home directory (ie. `cd ~/mhh; ./mhh`)
+* Linux: Run the `mhh` program in the app directory under your home directory (ie. `cd ~/monkeyhihat; ./mhh`)
 * You should see a spinning swirly-ball thing -- this is the "idle" shader built into the program:
 
 ![image](images/idle.png)
@@ -22,7 +22,7 @@ With the idle shader still running:
 * Finally, start some music and try the playlist command: `mhh --playlist variety`
 
 #### Linux
-* Open a terminal window and change to the app directory: `cd ~/mhh`
+* Open a terminal window and change to the app directory: `cd ~/monkeyhihat`
 * To view help at any time, enter the command `./mhh --help`
 * Execute the command `./mhh --load warp_speed` ... you should see a "flying through space" visualizer start
 * Try applying an effect, execute the command `./mhh --load warp_speed rainbow_borders` for a more colorful version
@@ -36,7 +36,7 @@ This is where remote control comes into play.
 
 ## Remote Control: Monkey-Droid GUI
 
-Windows and Android users can install [Monkey Droid](https://github.com/MV10/monkey-droid), a simple dedicated GUI application for controlling monkey-hi-hat running on another computer on the same local network. The Windows `msix` or the Android `apk` install packages are available on the [release](https://github.com/MV10/monkey-hi-hat/releases/) page. The Monkey Droid application has minor UI bugs (thanks to .NET 7's MAUI being released prematurely) but I plan to rewrite it in 2026 when the libraries have matured.
+Users with an Android or Windows device (even if Monkey Hi Hat itself runs on Linux) can install [Monkey Droid](https://github.com/MV10/monkey-droid), a simple dedicated GUI application for controlling Monkey Hi Hat running on another computer on the same local network. The Windows `msix` or the Android `apk` install packages are available on the [release](https://github.com/MV10/monkey-hi-hat/releases/) page. The Monkey Droid application has minor UI bugs (thanks to .NET 7's MAUI being released prematurely) but I plan to rewrite it in 2026 when the libraries have matured.
 
 There is a setting which controls how these programs communicate. If you don't understand terms like TCP and port, just leave them at the defaults, it will almost always work. The Monkey Hi Hat `mhh.conf` config file has an `UnsecuredPort` setting, which is the TCP port where Monkey Hi Hat receives remote commands. By default, port 50001 will be used, but you can use any open port you wish. The official TCP custom or "dynamic" port range is 49152 to 65535, which is your safest bet for avoiding collisions with other things running on your system.
 
@@ -64,7 +64,7 @@ The first step is to tell Windows you want to use OpenSSH Server and OpenSSH Cli
 
 The next step is to make sure OpenSSH Server is always running. Open the Start menu and type _Services_ and you should see the Services app show up. Click on it, then scroll down to find _OpenSSH SSH Server_. At the right, you'll probably see that startup mode is _Manual_ and nothing in the status column, indicating it is not running. Double-click on it, and in the properties dialog, change _Startup type_ to _Automatic_ or _Automatic (Delayed Start)_ (which lets Windows start more quickly), and under _Service status_ click on the _Start_ button, then click _Ok_ and close the Services app.
 
-Finally, you need to open port 22 on your computer's firewall so that it can receive SSH traffic. Open the Start menu and type "Firewall" and you should see _Firewall & network protection_ pop up. Click on it, then click _Advanced settings_, which opens a Windows Defender dialog. Click _Inbound Rules_ at the top left, then _New Rule_ at the top right. The New Rule Wizard dialog opens. Click the _Port_ option, then click the _Next_ button. Keep the default _TCP_ and _Specific local ports_ options, and type _22_ in the field next to _Specific local ports_, then click the _Next_ button. Keep the default _Allow the connection_ setting and click _Next_ again. For monkey-hi-hat purposes, you most likely only want OpenSSH to respond on _Private_ networks, so uncheck _Domain_ and uncheck _Public_ unless you intend to configure secure access. Finally, click _Next_ again, enter _OpenSSH Server_ as the firewall rule name, and click _Finish_. You can close the Windows Defender and Settings windows.
+Finally, you need to open port 22 on your computer's firewall so that it can receive SSH traffic. Open the Start menu and type "Firewall" and you should see _Firewall & network protection_ pop up. Click on it, then click _Advanced settings_, which opens a Windows Defender dialog. Click _Inbound Rules_ at the top left, then _New Rule_ at the top right. The New Rule Wizard dialog opens. Click the _Port_ option, then click the _Next_ button. Keep the default _TCP_ and _Specific local ports_ options, and type _22_ in the field next to _Specific local ports_, then click the _Next_ button. Keep the default _Allow the connection_ setting and click _Next_ again. For Monkey Hi Hat purposes, you most likely only want OpenSSH to respond on _Private_ networks, so uncheck _Domain_ and uncheck _Public_ unless you intend to configure secure access. Finally, click _Next_ again, enter _OpenSSH Server_ as the firewall rule name, and click _Finish_. You can close the Windows Defender and Settings windows.
 
 ### Linux SSH Support
 

@@ -2,7 +2,7 @@
 
 ## Shader Tutorials
 
-Writing OpenGL shaders is a very complex topic. The language (GLSL) is unique, the massively-parallel GPU processing model has many important differences compared to traditional programming, and there is almost an endless list of tricks and techniques that are in use. This section doesn't try to teach shader programming. This is only about details that are specific to monkey-hi-hat shaders. 
+Writing OpenGL shaders is a very complex topic. The language (GLSL) is unique, the massively-parallel GPU processing model has many important differences compared to traditional programming, and there is almost an endless list of tricks and techniques that are in use. This section doesn't try to teach shader programming. This is only about details that are specific to Monkey Hi Hat shaders. 
 
 If you aren't sure where to begin, I strongly recommend Gregg Man's VertexShaderArt [tutorial](https://www.youtube.com/@vertexshaderart8178/videos) videos for a nice introduction to some of the basics of shader programming. It's specific to the unique integer-input approach used by `VertexIntegerArray` shaders, but a lot of the math techniques and other considerations are broadly applicable.
 
@@ -10,7 +10,7 @@ For fragment-oriented shaders like those found on Shadertoy, you may want to rea
 
 ## OpenGL Version and Precision Directives
 
-As of version 3.0, monkey-hi-hat only supports OpenGL 4.5. This is close to the final OpenGL 4.6 API level since Khronos (who defines the standards) decided to start over with the "new" (years old...) Vulkan API. Each vert and frag shader should begin with a version directive, which _must_ be the first line of the shader other than blanks or comments:
+As of version 3.0, Monkey Hi Hat only supports OpenGL 4.5. This is close to the final OpenGL 4.6 API level since Khronos (who defines the standards) decided to start over with the "new" (years old...) Vulkan API. Each vert and frag shader should begin with a version directive, which _must_ be the first line of the shader other than blanks or comments:
 
 ```GLSL
 #version 450
@@ -25,11 +25,11 @@ precision highp float;
 
 ## Inputs, Uniforms, and Outputs
 
-There are a number of pre-defined inputs and uniforms provided by monkey-hi-hat, and some conventions about outputs. Of course, if you are defining both the vertex and fragment shaders, you can use whatever outputs you like for passing data from the vertex stage to the fragment stage.
+There are a number of pre-defined inputs and uniforms provided by Monkey Hi Hat, and some conventions about outputs. Of course, if you are defining both the vertex and fragment shaders, you can use whatever outputs you like for passing data from the vertex stage to the fragment stage.
 
 ## Uniforms
 
-Every monkey-hi-hat vertex and fragment shader has access to these uniforms:
+Every Monkey Hi Hat vertex and fragment shader has access to these uniforms:
 
 | Type | Name | Description |
 |---|---|---|
@@ -79,19 +79,19 @@ Even though the Vertex Source Type works with integers, they are passed as `floa
 
 ## VertexShaderArt Conversions
 
-The VertexShaderArt `mouse` and `touch` inputs are rarely used, but given that monkey-hi-hat isn't interactive that way, they can be set to a `#define` constant. I haven't seen the `soundRes` or `background` audio textures used anywhere, so these could also be set to a constant if you encounter them.
+The VertexShaderArt `mouse` and `touch` inputs are rarely used, but given that Monkey Hi Hat isn't interactive that way, they can be set to a `#define` constant. I haven't seen the `soundRes` or `background` audio textures used anywhere, so these could also be set to a constant if you encounter them.
 
-Audio Textures in VertexShaderArt have data in the alpha `a` channel. In monkey-hi-hat, you will need to change this to reference the green `g` channel. VertexShaderArt audio data is stored as 16-bit integers (except their `floatSound` texture, which is rarely used), whereas eyecandy provides 32-bit RGBA `float` values. Most likely the `eyecandyWebAudio` sound texture is most similar to the VertexShaderArt `sound` texture.
+Audio Textures in VertexShaderArt have data in the alpha `a` channel. In Monkey Hi Hat, you will need to change this to reference the green `g` channel. VertexShaderArt audio data is stored as 16-bit integers (except their `floatSound` texture, which is rarely used), whereas eyecandy provides 32-bit RGBA `float` values. Most likely the `eyecandyWebAudio` sound texture is most similar to the VertexShaderArt `sound` texture.
 
 Finally, look for `#define` settings and constants which can be converted to fixed- or random-value settings with the visualizer `[uniforms]` section. These will add variety to the visualizations which is not readily available in the originals.
 
 ## Basic Shadertoy Conversions
 
-Shadertoy uses a `void mainImage(in vec2 fragCoord, out vec4 fragColor)` function signature. For monkey-hi-hat, simply convert this to `void main()`. Be aware that Shadertoy sets these in/out arguments positionally; occasionally you'll find Shadertoy programs where the user changed the _names_ of the input and output arguments, such as `void mainImage(in vec2 u, out vec4 c)`.
+Shadertoy uses a `void mainImage(in vec2 fragCoord, out vec4 fragColor)` function signature. For Monkey Hi Hat, simply convert this to `void main()`. Be aware that Shadertoy sets these in/out arguments positionally; occasionally you'll find Shadertoy programs where the user changed the _names_ of the input and output arguments, such as `void mainImage(in vec2 u, out vec4 c)`.
 
-Audio Textures in Shadertoy have data in the red `r` channel (also frequently referenced as the `x` component; same thing). In monkey-hi-hat, you will need to change this to reference the green `g` channel. Shadertoy audio data is stored as 16-bit integers, whereas eyecandy uses 32-bit RGBA `float` values, but since they're normalized to floats, this isn't normally important.
+Audio Textures in Shadertoy have data in the red `r` channel (also frequently referenced as the `x` component; same thing). In Monkey Hi Hat, you will need to change this to reference the green `g` channel. Shadertoy audio data is stored as 16-bit integers, whereas eyecandy uses 32-bit RGBA `float` values, but since they're normalized to floats, this isn't normally important.
 
-The fragment shader template shows a number of useful `#define` declarations which remap monkey-hi-hat inputs to Shadertoy names:
+The fragment shader template shows a number of useful `#define` declarations which remap Monkey Hi Hat inputs to Shadertoy names:
 
 ```GLSL
 #define fragCoord (fragCoord * resolution)
@@ -106,29 +106,29 @@ The `fragCoord` macro is useful because Shadertoy supplies the physical (x,y) pi
 
 The `iChannel0` replacement assumes the original Shadertoy code was reading audio data from the first channel slot in the Shadertoy UI. For more complex conversions, you can also define macros to map other `iChannel` references to buffer inputs, texture files, and so on.
 
-Since monkey-hi-hat doesn't have mouse support, setting `iMouse` to any constant seems to work for most shaders -- typically they respond to changes in the mouse position. In Shadertoy, the mouse x,y coordinates map to the resolution (they aren't normalized values).
+Since Monkey Hi Hat doesn't have mouse support, setting `iMouse` to any constant seems to work for most shaders -- typically they respond to changes in the mouse position. In Shadertoy, the mouse x,y coordinates map to the resolution (they aren't normalized values).
 
-There are a few Shadertoy uniforms which have no corresponding monkey-hi-hat equivalent. For example, `iChannelTime` refers to either the amount of time an input video or a Soundcloud track has been playing. Typically I will just use the `time` uniform instead, although for videos `_duration` and `_progress` uniforms are available prefixed by the texture sampler uniform name.
+There are a few Shadertoy uniforms which have no corresponding Monkey Hi Hat equivalent. For example, `iChannelTime` refers to either the amount of time an input video or a Soundcloud track has been playing. Typically I will just use the `time` uniform instead, although for videos `_duration` and `_progress` uniforms are available prefixed by the texture sampler uniform name.
 
 Finally, just as we advise for VertexShaderArt conversions, look for `#define` settings and constants which can be converted to fixed- or random-value settings with the visualizer `[uniforms]` section. These will add variety to the visualizations which is not readily available in the originals.
 
 ## Shadertoy Multi-Pass Conversions
 
-Shadertoy has a multi-pass concept which is similar to the monkey-hi-hat multi-pass feature, although the monkey-hi-hat approach is more flexible.
+Shadertoy has a multi-pass concept which is similar to the Monkey Hi Hat multi-pass feature, although the Monkey Hi Hat approach is more flexible.
 
 In Shadertoy, you have up to four tabs for source code labeled `BufferA` through `BufferD`, as well as an `Image` tab which is the final output pass in a multi-pass program. Each buffer is a rendering pass, and each pass has four input channels labeled `iChannel0` through `iChannel3`. These can be pointed at the pass buffers, audio data, or static resources like texture image files.
 
-In a Shadertoy multi-pass program, often the `Image` tab simply copies one of the buffers as output. When you see this, you can ignore the code in that tab. In monkey-hi-hat, the draw-buffer of the final pass is always used as output automatically.
+In a Shadertoy multi-pass program, often the `Image` tab simply copies one of the buffers as output. When you see this, you can ignore the code in that tab. In Monkey Hi Hat, the draw-buffer of the final pass is always used as output automatically.
 
 For Shadertoy, buffer data is updated sequentially. If `BufferA` uses its own previous-frame data as input (by pointing `iChannel0` at `BufferA`, for example), after the code in `BufferA` runs, any later passes will only see the modified output of `BufferA` from that same frame. If `BufferB` _also_ points `iChannel0` at `BufferA`, it won't get the previous frame's `BufferA` data, it will get whatever the `BufferA` code generated on that same frame.
 
-On the other hand, in monkey-hi-hat, _both_ the previous-frame and current-frame data is available for each pass for the entire duration of the frame. This means you have to consider how the Shadertoy program is using that input data. Technically when `BufferA` and `BufferB` both reference `BufferA` data, the monkey-hi-hat equivalent should pass the previous-frame data (letter-based, like `inputA`) to the shader code matching `BufferA`, but pass the current-frame data (number-based, like `input0`) to the shader code matching `BufferB`. It's less complicated than it sounds after you get used to it.
+On the other hand, in Monkey Hi Hat, _both_ the previous-frame and current-frame data is available for each pass for the entire duration of the frame. This means you have to consider how the Shadertoy program is using that input data. Technically when `BufferA` and `BufferB` both reference `BufferA` data, the Monkey Hi Hat equivalent should pass the previous-frame data (letter-based, like `inputA`) to the shader code matching `BufferA`, but pass the current-frame data (number-based, like `input0`) to the shader code matching `BufferB`. It's less complicated than it sounds after you get used to it.
 
-Additionally, monkey-hi-hat can modify any draw-buffer at any time. It is often more efficient to "stack" effects by using two alternating buffers rather than using a whole series of separate buffers, as is required by Shadertoy's more limited approach.
+Additionally, Monkey Hi Hat can modify any draw-buffer at any time. It is often more efficient to "stack" effects by using two alternating buffers rather than using a whole series of separate buffers, as is required by Shadertoy's more limited approach.
 
 ## Using Shadertoy Programs as FX
 
-Many Shadertoy programs that use a static image texture as input are candidates for conversion to a monkey-hi-hat FX shader. A good example is the [staircase FX](https://github.com/MV10/volts-laboratory/blob/master/fx/staircase.conf) in Volt's Laboratory. The original Shadertoy program, [Cellular Blocks](https://www.shadertoy.com/view/ltySRt) by the genius shader author named Shane, is one such example. The original uses the rusty metal texture as `iChannel0`, but in monkey-hi-hat, that input is replaced by the output of another shader -- _any_ other shader. The results are pretty interesting, to say the least.
+Many Shadertoy programs that use a static image texture as input are candidates for conversion to a Monkey Hi Hat FX shader. A good example is the [staircase FX](https://github.com/MV10/volts-laboratory/blob/master/fx/staircase.conf) in Volt's Laboratory. The original Shadertoy program, [Cellular Blocks](https://www.shadertoy.com/view/ltySRt) by the genius shader author named Shane, is one such example. The original uses the rusty metal texture as `iChannel0`, but in Monkey Hi Hat, that input is replaced by the output of another shader -- _any_ other shader. The results are pretty interesting, to say the least.
 
 Keep this approach in mind as you look for ideas for new FX shaders.
 
@@ -138,7 +138,7 @@ The _Introduction_ page mentions I don't intend to support Intel's integrated GP
 
 ### Pseudo-Random Number Generators
 
-An easy-to-see example is exhibited by zguerrero's Shadertoy creation [SlowMo Fluid](https://www.shadertoy.com/view/ltdGDn), which is the basis for the _splash_ FX used by monkey-hi-hat. The following screenshots are from Shadertoy in the browser, but the monkey-hi-hat FX exhibits the exact same behavior.
+An easy-to-see example is exhibited by zguerrero's Shadertoy creation [SlowMo Fluid](https://www.shadertoy.com/view/ltdGDn), which is the basis for the _splash_ FX used by Monkey Hi Hat. The following screenshots are from Shadertoy in the browser, but the Monkey Hi Hat FX exhibits the exact same behavior.
 
 > UPDATE 2025-AUG-13: Shadertoy user morimea (aka danilw on Github) pointed out this isn't actually an AMD bug and many NVIDIA GPUs exhibit the same behavior. It is the sin-hash function itself which is unreliable, as noted on his Github [README](https://github.com/danilw/GPU-sin-hash-stability), and documented further in his Medium [article](https://arugl.medium.com/hash-noise-in-gpu-shaders-210188ac3a3e). The rest of this section is as I wrote it originally in 2023, and two years later people are still using the broken hash, so it's worth being aware of.
 

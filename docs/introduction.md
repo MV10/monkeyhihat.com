@@ -1,6 +1,6 @@
 # Introduction
 
-Monkey Hi Hat is a cross-platform music visualizer. It displays colorful, interesting graphics, many of which are audio-reactive -- they move and change in time with whatever music is being played through your PC's speaker outputs. This documentation explains how to install, use, and customize the program. The source code repository's [README](https://github.com/MV10/monkey-hi-hat/blob/master/README.md) file offers a few short sample video clips, images, and links to related information. 
+Monkey Hi Hat is a cross-platform music visualizer. It displays colorful, interesting graphics, many of which are audio-reactive,  moving and changing in time with whatever music is being played through your PC's speaker outputs. This documentation explains how to install, use, and customize the program. The source code repository's [README](https://github.com/MV10/monkey-hi-hat/blob/master/README.md) file offers a few short sample video clips, images, and links to related information. 
 
 > Please understand there is no "user interface" -- the program is designed to run full screen, and to be controlled from another PC or Android device. Remote control is optimal but not mandatory. The general idea is to get it running and let it do its thing.
 
@@ -15,11 +15,11 @@ The hardware requirements are relatively modest. Other than DJ/VJ streaming scen
 
 * A modern graphics processor that supports OpenGL 4.5
 * .NET 8 runtime (or the equivalent .NET SDK)
-* Recommended: Monkey-Droid GUI
-* Optional: Remote control via SSH
+* Recommended: Monkey-Droid GUI remote control
+* Optional: SSH remote control
 * For content creators: GLSL editor or IDE extension
 
-And of course, you will need a source of music such as Spotify or Soundcloud. Spotify has a decent native client for each OS ([Windows](https://open.spotify.com/download), [Linux](https://www.spotify.com/de-en/download/linux/)) which has the benefit that it allows remote-control of music playing through your PC from any other client on the same network, such as your phone or a laptop.
+And of course, you will need a source of music such as Spotify, Soundcloud, line-in, a media player or whatever else you prefer. Spotify has a decent native client for each OS ([Windows](https://open.spotify.com/download), [Linux](https://www.spotify.com/de-en/download/linux/)) which has the benefit that it allows remote-control of music playing through your PC from any other client on the same network, such as your phone or a laptop.
 
 
 ## Getting Started

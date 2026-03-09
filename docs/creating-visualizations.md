@@ -6,7 +6,7 @@ A visualization is an OpenGL shader. Writing shaders is a very complex topic whi
 
 ## Core Elements
 
-A basic monkey-hi-hat visualization consists of three files:
+A basic Monkey Hi Hat visualization consists of three files:
 
 * the visualization configuration file (`.conf`)
 * an OpenGL vertex shader source code file (`.vert`)
@@ -35,7 +35,7 @@ You can specify both a `.vert` and `.frag` shader for these, but typically `Vert
 
 ### Audio Texture Types
 
-Monkey-hi-hat supports seven Audio Textures provided by eyecandy:
+Monkey Hi Hat supports seven Audio Textures provided by eyecandy:
 
 * `AudioTextureVolumeHistory`
 * `AudioTextureWaveHistory`
@@ -55,7 +55,7 @@ These will recognize `.vert`, `.frag`, and `.glsl` filename extensions, and It J
 
 ### Custom Creations
 
-The best workflow is probably an iterative process. Set up your files, load monkey-hi-hat and get some music going, disable caching with the `--nocache` command, and make small changes. Issue a `--reload` command whenever you make a change and see what the results are. I strongly recommend Gregg Man's VertexShaderArt [tutorial](https://www.youtube.com/@vertexshaderart8178/videos) videos for a nice introduction to this iterative process. It's also helpful to understand the unique integer-input approach used by `VertexIntegerArray` shaders.
+The best workflow is probably an iterative process. Set up your files, load Monkey Hi Hat and get some music going, disable caching with the `--nocache` command, and make small changes. Issue a `--reload` command whenever you make a change and see what the results are. I strongly recommend Gregg Man's VertexShaderArt [tutorial](https://www.youtube.com/@vertexshaderart8178/videos) videos for a nice introduction to this iterative process. It's also helpful to understand the unique integer-input approach used by `VertexIntegerArray` shaders.
 
 But before you begin, you have to decide the _style_ of visualization you wish to create.
 
@@ -77,6 +77,6 @@ Note that it can be handy to use the configuration file's multiple-path feature.
 
 ### Converting Public Domain Shaders
 
-If you want to adapt an existing Shadertoy or VertexShaderArt example, the Volt's Laboratory repository (and the archive included with each app release) has template files for each. Since Shadertoy is frag-shader-oriented, there is a template `.conf` and `.frag` file. Similarly, because VertexShaderArt is vert-shader-oriented, there is a template `.conf` and `.vert` file. Adapting these to monkey-hi-hat is very nearly a fill-in-the-blanks process.
+If you want to adapt an existing Shadertoy or VertexShaderArt example, the Volt's Laboratory repository (and the archive included with each app release) has template files for each. Since Shadertoy is frag-shader-oriented, there is a template `.conf` and `.frag` file. Similarly, because VertexShaderArt is vert-shader-oriented, there is a template `.conf` and `.vert` file. Adapting these to Monkey Hi Hat is very nearly a fill-in-the-blanks process.
 
 Comments in the template files should help you, and of course, Volt's Laboratory has many examples you can use as a reference. For more details, refer to the [Shader Basics](shader-basics.md) page which explains the available shader uniforms, and how these map to Shadertoy and VertexShaderArt.

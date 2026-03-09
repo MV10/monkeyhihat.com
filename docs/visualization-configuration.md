@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The visualization configuration tells monkey-hi-hat what kind of data to send to the shaders, what kind of audio textures are used (if any), and where to find the vertex and shader files. There are many examples in my [Volt's Laboratory](https://github.com/MV10/volts-laboratory/tree/master/shaders) repository, and I'll be adding to those over time.
+The visualization configuration tells Monkey Hi Hat what kind of data to send to the shaders, what kind of audio textures are used (if any), and where to find the vertex and shader files. There are many examples in my [Volt's Laboratory](https://github.com/MV10/volts-laboratory/tree/master/shaders) repository, and I'll be adding to those over time.
 
 ## The [shader] Section
 
