@@ -10,17 +10,26 @@ As of version 5.2.0, Linux is officially supported.
 
 Working on MHH should be as simple as forking and cloning the repo, then firing up Visual Studio or JetBrains Rider. I assume anyone interested in development has already installed and run the app, which means you should already have the [volts-laboratory](https://github.com/MV10/volts-laboratory) content (visualizers, FX, etc) in your `C:\Program Data\mhh-content` or `/opt/mhh-content` directory. You will want to modify your config file to point there. 
 
-I won't accept PRs with changes to the config files unless you're (a) adding something new or fixing something (start an Issues discussion about it first), and (b) have applied *only* those changes to the config files I distribute now, and (c) you're also willing to update the install processes to support the changes. Read the page on configuration to find out how to reference a stand-alone config that isn't part of source control.
+I won't accept PRs with changes to the config files unless you're (a) adding something new or fixing something (start an Issues discussion about it first), and (b) have applied *only* those changes to the config files I distribute now, and (c) you're also willing to update the install processes to support the changes. Read the docs page on configuration to find out how to reference a stand-alone config that isn't part of source control.
 
 You should probably have at least a passing familiarity with OpenGL programming (GLSL, or at least something like Shadertoy's WebGL). There are definitely areas of the codebase that never touch on that at all, but the bulk of it is really in the weeds on rendering sequences (particularly the intricacies of buffer-handling) and GL resource-handling.
 
 If you're not familiar with multi-threaded applications, unsafe code, or careful disposal of unmanaged resources, I'd advise extreme caution here, and please mention that to me when you open an Issue. For the most part, if you understand `async/await` and `Task` usage (for example, you understand the difference between `WhenAll` and `WhenAny` and what "aggregate exception" means, and why async and parallelism are different things in the .NET concurrency model), you should be fine. OpenGL is not even a little bit thread-safe, and never will be, but most of the tricky stuff happens in the separate `eyecandy` audio/OpenGL library that MHH uses.
 
+In the main app, I keep almost everything in the `mhh` namespace. In particular, I do not (and will not) use or accept directory-oriented namespaces. Directories are for organizing physical files, namespaces are for organizing logical relationships.
+
 ## Solution Structure
 
-The solution has a few Solution Folders which point to content in the repo's top-level `testcontent` directory, so if you need to create a test visualizer or FX relating to some new feature, you'll have to manually create it there, then `Add -> Existing Item` to the appropriate Solution Folder for it to show up.
+* `mhh` is the main solution directory
+* `mhh\mhh` is the main Monkey Hi Hat application
+* `mhh\install` is a Windows-only .NET Framework installer
+* `mhh\updateconf` is a cross-platform config updater (modern .NET)
+* `testcontent` are various simple shaders and other resources for specific dev purposes
+* `packaging` is a bunch of scripts for deployment, these are specific to my environment
 
-In addition to the `mhh` project itself, there is the Windows installer .NET Framework project (`install`, refer to the readme for some details), and the Linux packaging scripts (`linuxpkg`). Directories within the `mhh` project are described below. 
+Both `testcontent` and `packaging` are also referenced in the solution as non-build projects for convenience.
+
+Directories and content within the Monkey Hi Hat app project are described below. 
 
 ### Program.cs
 

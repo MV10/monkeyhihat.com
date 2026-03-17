@@ -29,7 +29,7 @@ sudo apt-get install -y ffmpeg
 
 ## Application and Content
 
-Download the `install.sh` script from the Releases page, make it executable, and run it in your home directory:
+For first-time installation, download the `install.sh` script from the Releases page, make it executable, and run it in your home directory:
 
 ```
 cd ~
@@ -41,7 +41,7 @@ It will download some archive files, create some directories, and expand the con
 
 The application and config installs into `~/monkeyhihat` and the content files are in `~/mhh-content`.
 
-If you already have Monkey Hi Hat installed, I do provide an `update.sh` script, but all it really does is overwrites the app and content directories with updated files. The Windows installer tries to update the config file, but Linux support is in the early stages and that functionality isn't available yet (sorry). You should consult the [Changelog](changelog.md) and manually add any new settings (I'd _strongly_ recommend copying the comments and the settings to the same location as the template). Each release includes a `~/monkeyhihat/ConfigFiles/mhh.conf` template configuration explaining all available options.
+If you already have Monkey Hi Hat installed, use the `update.sh` script instead. Same as above, make it executable and run it, everything else will be handled for you including updating changes to the configuration file. It will create a backup of your old config (with a `bak` extension) before modifying anything.
 
 
 ## Next Steps
