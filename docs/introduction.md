@@ -14,7 +14,7 @@ In a desktop browser, you can drag the right-hand side of this documentation con
 The hardware requirements are relatively modest. Other than DJ/VJ streaming scenarios, CPU and memory usage are typically very low. I do not support Intel GPUs (see _Hardware Notes_ below).
 
 * A modern graphics processor that supports OpenGL 4.5
-* .NET 8 runtime (or the equivalent .NET SDK)
+* .NET 10 runtime (or the equivalent .NET SDK)
 * Recommended: Monkey-Droid GUI remote control
 * Optional: SSH remote control
 * For content creators: GLSL editor or IDE extension

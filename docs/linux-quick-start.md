@@ -14,10 +14,10 @@ The dependencies which must be manually installed are:
 
 You should also have `unzip` installed (most modern distros already have it).
 
-Install the latest .NET version 8 runtime package from Microsoft (or if you're a .NET developer, the SDK works just as well). You will have to add their package source ([instructions](https://learn.microsoft.com/en-us/dotnet/core/install/linux)). Using Debian as an example, once you have packaging configured, you would run:
+Install the latest .NET version 10 runtime package from Microsoft (or if you're a .NET developer, the SDK works just as well). You will have to add their package source ([instructions](https://learn.microsoft.com/en-us/dotnet/core/install/linux)). Using Debian as an example, once you have packaging configured, you would run:
 
 ```bash
-sudo apt-get install -y dotnet-runtime-8.0
+sudo apt-get install -y dotnet-runtime-10.0
 ```
 
 For Debian-based distributions, an official FFmpeg package exists:

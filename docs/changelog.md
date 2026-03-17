@@ -1,6 +1,20 @@
 # Changelog
 
-#### v5.2.0 2025-12-07
+
+#### v5.3.0 2026-03-17 (content: v5.2.0, texture: v5.2.0)
+* Update runtime version to .NET 10
+* Windows MSMD service updated to .NET 10
+* Test mode - show keys on screen
+* Test mode - abort when `--load` or similar commands are issued
+* Test content - add `TestingExcludePaths` to `[linux]` and `[windows]` sections
+* Config - remove `TestingSkipVizCount` and `TestingSkipFXCount`
+* Added a window icon (rep the monkey!)
+* Linux - add update script and install/update terminal-output logging
+* Installers - cross-platform `updateconf` project to update config file
+* Solution - added `packaging` and `testcontent` as non-build content projects
+
+
+#### v5.2.0 2025-12-07 (content: v5.2.0, texture: v5.2.0)
 * Full Linux support (testing on Debian 13 / KDE Plasma 6)
 * Linux option to check for X11 (NVIDIA has problems with Wayland)
 * Configuration changes in `mhh.conf`
