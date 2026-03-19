@@ -18,6 +18,15 @@
 * [Reusable Shader Library Functions](reusable-shader-library-functions)
 * [Playlist Configuration](playlist-configuration)
 
+**Configuration File**
+* [Conventions](docs-config/conventions.md)
+* [[setup] section](docs-config/setup.md)
+* [[msmd] section](docs-config/msmd.md)
+* [[text] section](docs-config/text.md)
+* [[ndi] section](docs-config/ndi.md)
+* [[linux] section](docs-config/linux.md)
+* [[windows] section](docs-config/windows.md)
+
 **Appendix** 
 * [DJ and VJ Notes](dj-and-vj-notes)
 * [Contributor's Getting Started](contributors-getting-started)

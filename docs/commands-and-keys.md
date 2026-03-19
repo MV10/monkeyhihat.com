@@ -7,6 +7,10 @@ Executing `mhh` with no switches launches the program. After it is running, you 
 The output from `mhh --help` lists available switches:
 
 ```
+By default, the application always loads with the default "idle" shader and all other switches are
+are passed to the already-running instance. Only "--help", "--display", "--load", or "--playlist"
+switches can be used if an instance is not already running.
+
 --help                      shows help (surprise!)
 --quit                      ends the program
 
@@ -18,32 +22,32 @@ The output from `mhh --help` lists available switches:
 --load [viz] [fx]           loads a visualization and immediately applies FX; must use search paths
 --fx [file]                 loads [file].conf from FXPath defined in mhh.conf
 --fade [file]               queues a specific crossfade shader for the next visualizer change
---load [path\file]          if present, loads [file].conf from requested path
---fx [path\file]            if present, loads [file].conf from requested path
---fade [path\file]          if present, queues crossfade from requested path
+--load [path/file]          if present, loads [file].conf from requested path
+--fx [path/file]            if present, loads [file].conf from requested path
+--fade [path/file]          if present, queues crossfade from requested path
 
 --playlist [file]           loads [file].conf from PlaylistPath defined in mhh.conf
---playlist [path\file]      if present, loads [file].conf from requested path
+--playlist [path/file]      if present, loads [file].conf from requested path
 --next                      when a playlist is active, advances to the next viz (using the Order setting)
 --next fx                   when a playlist is active, applies a post-processing FX (if one isn't running)
 
---jpg [wait]                JPG screenshot; (saves to desktop); "wait" watches for spacebar
---png [wait]                PNG screenshot; (saves to desktop); "wait" watches for spacebar
+--jpg [wait]                JPG screenshot (saves to desktop); "wait" watches for spacebar
+--png [wait]                PNG screenshot (saves to desktop); "wait" watches for spacebar
 
 --show [viz|stats]          Text overlay for 10 seconds (unless "toggle" command is used)
 --show [toggle|clear]       Switches text overlays from 10 seconds to permanent, "clear" removes overlay
 --show [popups|what]        "what" shows viz and FX names and "popups" toggles playlist auto-popups
 --show track                On Windows, displays most recent Spotify track info (if available)
---show grid                 Displays a 100 x 15 character grid for adjusting text settings
+--show grid                 Displays a character grid for adjusting text settings in app config
 
 --info                      writes shader and execution details to the console
 --display                   lists monitor details and the window state and coordinates
 --fullscreen                toggle between windowed and full-screen state
 --fps                       returns instantaneous FPS and average FPS over past 10 seconds
 --fps [0|1-9999]            sets a frame rate (FPS) target, or 0 to disable (some shaders may require 60 FPS)
---nocache                   disables shader viz/fx caching for the remainder of the session (good for testing)
+--nocache                   disables shader viz/FX caching for the remainder of the session (good for testing)
 
---test [viz|fx|fade] [file] Enters test mode, use +/- to cycle through content
+--test [viz|fx|fade] [file] Enters test mode, +/- cycles through content, Q to quit, R to reload
 --endtest                   Exits test mode (loads the idle visualizer)
 
 --standby                   toggles between standby mode and active mode
@@ -53,7 +57,7 @@ The output from `mhh --help` lists available switches:
 --log [level]               shows or sets log-level (None, Trace, Debug, Information, Warning, Error, Critical)
 --paths                     shows the configured content paths (viz, FX, etc.)
 
---console                   toggles the visibility of the console window (only minimizes Terminal)
+--console                   toggles the console window visibility
 --cls                       clears the console window of the running instance (useful during debug)
 
 --devices                   list audio device names, can be used when MHH is not running
@@ -64,7 +68,6 @@ The output from `mhh --help` lists available switches:
 --streaming receive spout "source name"
 --streaming receive ndi "machine (source name)" ["group1,group2,...groupN"]
 --streaming stop send|receive
-
 ```
 
 ## Keyboard Input

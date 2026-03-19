@@ -12,7 +12,7 @@ I personally like to change the first three options:
 * Change `StartInStandby` to `true`
 * Change `CloseToStandby` to `true`
 
-`StartInStandby` determines what the program does as soon as you execute it. The default is `false` which means it immediately loads and runs the "Idle" shader. When `true` the program will simply wait to receive commands from some remote source or another terminal window.
+`StartInStandby` determines what the program does as soon as you execute it. The default is `false` which means it immediately loads and runs the "Idle" shader. When `true` the program will simply wait to receive commands from some remote source or another terminal window. Standby is overridden if you start the program with a `--load` or `--playlist` switch.
 
 If the program displays graphics immediately, or after it receives a command that displays graphics (such as `--load` or `--playlist`), the `StartFullScreen` setting determines whether the program runs in a window or full screen mode.
 
