@@ -38,11 +38,13 @@ Some of the available commands show diagnostics information or other helpful tex
 
 ## Font Rendering
 
-Monkey Hi Hat has an internal font, but it is possible to generate and load custom fonts. That's currently beyond the scope of this documentation, although v5.4.0 ships a custom font texture which is discussed below. Typically the settings in this section don't need to be altered. For many of these, _very_ small changes can have a large effect. Most of these are "normalized" dimensions, which means they are relative to a range of 0.0 to 1.0, representing the screen space or font texture space.
+Monkey Hi Hat has an internal font, but it is possible to use custom-generated fonts. As of version 5.4.0 the Shadertoy font is no longer used (but it is still available in the installed texture directory). Now the program uses a Google font called Nova Mono, and it also ships another Google font called Kode Mono (both of these are also in the installed texture directory). 
 
-`TextBufferX` and `TextBufferY` defines the size of the data block containing the text to generate. This defaults to 100 x 10 for historic reasons, but the config template sets this to 97 x 30, which are the optimal values to cover the entire screen using the other default settings. If you enable text banners (see above) and your banner is somewhere in the middle of the screen, your installation may have the original 10 row Y setting; change these to 97 x 30 to fix the problem.
+Typically the settings in this section don't need to be altered. For many of these, _very_ small changes can have a large effect. Most of these are "normalized" dimensions, which means they are relative to a range of 0.0 to 1.0, representing the screen space or font texture space.
 
 `FontAtlastFilename` is blank by default, which uses the internal _font.png_ file. Any file you specify here should be somewhere in the configured list of texture paths.
+
+`TextBufferX` and `TextBufferY` defines the size of the data block containing the text to generate. This defaults to 100 x 10 for historic reasons, but the config template sets this to 98 x 30, which are the optimal values to cover the entire screen using the other default settings. If you enable text banners (see above) and your banner is somewhere in the middle of the screen, your installation may have the original 10 row Y setting; change these to 98 x 30 to fix the problem.
 
 `OutlineWeight` defaults to 0.55 which is generally good for the internal font atlas. This controls the dark outline around the white letters, which creates contrast against light backgrounds. This is extremely sensitive to small changes and will probably need to be tweaked if you use a different font atlas.
 
@@ -50,11 +52,12 @@ Monkey Hi Hat has an internal font, but it is possible to generate and load cust
 
 `PositionX` and `PositionY` default to 0.96 x 0.5 which defines the top left corner of the character cells. Basically this creates some offset from the screen edges. This may need to be fine-tuned if you use very unusual resolutions (some ultra-wide displays) or portrait mode.
 
-### Alternate Font
+### Creating Custom Fonts
 
-Version 5.4.0 shipped with an alternate font atlas, [Kode Mono](https://fonts.google.com/specimen/Kode+Mono?preview.script=Latn) from Google.
+Otavio Good wrote the original Shadertoy font generator, which can be found [here](https://github.com/otaviogood/shader_fontgen), although the fonts are hard-coded and you have to download the HTML file and load it locally. Tim Maffett hosts a version [here](https://timmaffett.github.io/shadertoy_fontgen/generate_sdf.html) with very useful improvements, including access to Google's enormous free library of fonts, the option to generate higher quality textures, and the ability to center characters in non-monospaced fonts.
 
-To use this font apply these settings:
+Generally speaking, monospaced fonts look and work better as "narrow" characters like "i" are commonly wider to "fill the space" better than in proportional fonts. That being said, the default rendering values make some wide characters overflow the allotted character cell, so you may need to play with some of the settings above.
 
-* `FontAtlasFilename=Font Kode Mono 1024x1024.png`
-* `OutlineWeight=0.62`
+I recommend sticking with 1024x1024, there will be no major benefit from doubling the size, and in my testing the very high quality option only takes 30 seconds or so (not "hours" as the site warns).
+
+Once you have your texture, save it to a custom directory that you add to your texture path list in the config file. Remember that when you install Monkey Hi Hat updates, the installer-provided content directories are _replaced_ so you would lose any new files or changes you make there.

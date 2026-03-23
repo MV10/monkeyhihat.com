@@ -1,6 +1,26 @@
 # Changelog
 
 
+#### v5.4.0 2026-03-23 (content: v5.4.0, texture: v5.4.0)
+* Accept `--load` and `--playlist` switches at initial launch
+* Optional byline display for visualizers (default `ShowVizByline=false`)
+* Optional bottom-row banners (default `ShowTextBanners=false`; adds `[text-banners]` section)
+* Fixed text double-blank-line bug with newline in right-most column
+* Honor custom font texture in `FontAtlasFilename`
+  * Changed the built-in font to Nova Mono (Shadertoy font is in textures directory)
+  * Sample custom font textures:
+    * `Font Kode Mono 1024x1024.png`, uses `OutlineWeight=0.62`
+    * `Font Nova Mono 1024x1024.png`, uses `OutlineWeight=0.62`
+  * Updated documentation to explain how to generate custom fonts
+  * Changed default buffer size and outline weights (98x30 and 0.62)
+* Command `--show grid` now reflects `TextBufferX` and `TextBufferY` dimensions
+* Implemented log limits: max ten 5MB files, retained 7 days, no longer wipes old logs at startup
+* Fixed bug where numeric keypad right-arrow and down-arrow were being ignored
+* Allow escape key to terminate app in standby mode
+* Added "What Now?" on-screen instructions in standby mode
+* Move config template (`ConfigFiles/mhh.conf`) comments to website documentation section
+
+
 #### v5.3.0 2026-03-17 (content: v5.2.0, texture: v5.2.0)
 * Update runtime version to .NET 10
 * Windows MSMD service updated to .NET 10
