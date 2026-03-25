@@ -47,11 +47,119 @@ Monkey Hi Hat supports seven Audio Textures provided by eyecandy:
 
 Refer to the [Understanding Audio Textures](understanding-audio-textures.md) page for details about what these are and how they're used to create audio-reactive visualizations.
 
+## Preparation
+
+When you install Monkey Hi Hat, it also installs a bunch of visualization shaders and FX and textures and so on. You should store any custom content _separately_ from those items, because when you update the program, those pre-installed things will be _completely replaced_ by removing the default locations and re-creating them from scratch.
+
+Choose a location for your top-level directory where custom content will be stored. Let's assume it's a directory named `monkeyshine`. For Windows users, we'll assume this is off your main drive, so `C:\monkeyshine` and for Linux users we'll assume it's in your home directory, so `~/monkeyshine`. Inside that directory create six additional directories:
+
+```
+   📁 monkeyshine
+   ┣━━📁 crossfades
+   ┣━━📁 fx
+   ┣━━📁 libraries
+   ┣━━📁 playlists
+   ┣━━📁 shaders
+   ┗━━📁 textures 
+```
+
+You will have to add these to your configuration file so that the program can find them.
+
+### Windows
+
+Use Notepad and open `C:\Program Files\mhh\mhh.conf`, then scroll down to the `[windows]` section near the bottom.
+
+You will see five path settings like this. The path separator on Windows is the semicolon (`;`), as you can see in the `VisualizerPath` setting below. You will add a separator to these settings and add your new directories.
+
+```
+# location of visualizer conf and shader vert/frag files
+VisualizerPath=C:\ProgramData\mhh-content\shaders;C:\ProgramData\mhh-content\libraries
+
+# location of playlist conf files
+PlaylistPath=C:\ProgramData\mhh-content\playlists
+
+# location of graphics files
+TexturePath=C:\ProgramData\mhh-content\textures
+
+# location of post-processing FX conf and shader vert/frag files
+FXPath=C:\ProgramData\mhh-content\fx;C:\ProgramData\mhh-content\libraries
+
+# location of crossfade shader frag files
+CrossfadePath=C:\ProgramData\mhh-content\crossfades
+```
+
+Using the example directory structure shown earlier, your settings would become:
+
+```
+# location of visualizer conf and shader vert/frag files                              ↓ new content starts here
+VisualizerPath=C:\ProgramData\mhh-content\shaders;C:\ProgramData\mhh-content\libraries;C:\monkeyshine\shaders;C:\monkeyshine\libraries
+
+# location of playlist conf files                ↓ new content starts here
+PlaylistPath=C:\ProgramData\mhh-content\playlists;C:\monkeyshine\playlists
+
+# location of graphics files                   ↓ new content starts here
+TexturePath=C:\ProgramData\mhh-content\textures;C:\monkeyshine\textures
+
+# location of post-processing FX conf and shader vert/frag files         ↓ new content starts here
+FXPath=C:\ProgramData\mhh-content\fx;C:\ProgramData\mhh-content\libraries;C:\monkeyshine\fx;C:\monkeyshine\libraries
+
+# location of crossfade shader frag files          ↓ new content starts here
+CrossfadePath=C:\ProgramData\mhh-content\crossfades;C:\monkeyshine\crossfades
+```
+
+And that's it -- the program will find anything you create.
+
+### Linux
+
+Use text editor like nano or Kate and open `~/monkeyhihat/mhh.conf`, then scroll down to the `[linux]` section.
+
+You will see five path settings like this. The path separator on Linux is the colon (`:`), as you can see in the `VisualizerPath` setting below. You will add a separator to these settings and add your new directories.
+
+```
+# location of visualizer conf and shader vert/frag files
+VisualizerPath=~/mhh-content/shaders:~/mhh-content/libraries
+
+# location of playlist conf files
+PlaylistPath=~/mhh-content/playlists
+
+# location of graphics files
+TexturePath=~/mhh-content/textures
+
+# location of post-processing FX conf and shader files
+FXPath=~/mhh-content/fx:~/mhh-content/libraries
+
+# location of crossfade shader files
+CrossfadePath=~/mhh-content/crossfades
+```
+
+Using the example directory structure shown earlier, your settings would become:
+
+```
+# location of visualizer conf and shader vert/frag files                          ↓ new content starts here
+VisualizerPath=~/mhh-content/shaders:~/mhh-content/libraries:~/monkeyshine/shaders:~/monkeyshine/libraries
+
+# location of playlist conf files   ↓ new content starts here
+PlaylistPath=~/mhh-content/playlists:~/monkeyshine/playlists
+
+# location of graphics files      ↓ new content starts here
+TexturePath=~/mhh-content/textures:~/monkeyshine/textures
+
+# location of post-processing FX conf and shader files          ↓ new content starts here
+FXPath=~/mhh-content/fx:~/mhh-content/libraries:~/monkeyshine/fx:~/monkeyshine/libraries
+
+# location of crossfade shader files  ↓ new content starts here
+CrossfadePath=~/mhh-content/crossfades:~/monkeyshine/crossfades
+```
+
+And that's it -- the program will find anything you create.
+
 ## Workflows
 
 It's _extremely_ useful to have an editor that "speaks" GLSL, the OpenGL Shader Language. There are probably plugins for popular editors like Notepad++ or (shudder) Visual Studio Code, but since I use the grown-up version of Visual Studio, I strongly recommend Daniel Scherzer's [GLSL language integration](https://marketplace.visualstudio.com/items?itemName=DanielScherzer.GLSL2022) extension. For Linux-based development, I use JetBrains Rider with Jan Polák's [GLSL Support](https://plugins.jetbrains.com/plugin/6993-glsl-support) plugin which works well, despite iffy reviews of early versions.
 
 These will recognize `.vert`, `.frag`, and `.glsl` filename extensions, and It Just Works. It's a pretty nice workflow to run Monkey Hi Hat on another monitor or off to the side in a window, and use your IDE to modify the shader, then just issue a `--reload` command to immediately see the results.
+
+Both Visual Studio and JetBrains Rider can directly open a directory (in other words, you don't need to create a solution or project).
 
 ### Custom Creations
 

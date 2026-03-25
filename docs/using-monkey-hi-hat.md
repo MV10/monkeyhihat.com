@@ -87,3 +87,10 @@ The first time you connect to a given SSH server, the client will warn you that 
 You are logging into the Monkey Hi Hat computer, so you'll be prompted for a password. SSH _always_ requires a password-protected account. Linux accounts normally always have a password, but on Windows you may have to alter your user login to accept a password, particularly if you're using a "Microsoft account" and/or the Windows Hello PIN, rather than a simple local account. These steps are beyond the scope of this Quick Start, but it's pretty easy to find more details online.
 
 At that point you'll find yourself at a terminal prompt. From there you can issue all the usual `mhh` commands. The responses you see in your SSH client session is output from the other computer where Monkey Hi Hat is running: remote control via keyboard.
+
+## Next Steps
+
+Visit these pages:
+
+* [Post-Install Instructions](https://www.monkeyhihat.com/docs/index.php#/post-install-instructions) describes some commonly-used settings.
+* [Commands and Keys](https://www.monkeyhihat.com/docs/index.php#/commands-and-keys) is a complete reference to commands for the running program.
