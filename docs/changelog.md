@@ -1,5 +1,10 @@
 # Changelog
 
+#### v5.4.1 2026-04-01 (content: v5.4.0, texture: v5.4.0)
+* Distribute Monkey Droid 2.0 (Windows, Android, and now Linux)
+* Add `--md.detailfx` to support FX listings on monkey-droid v2
+* Decouple banner display from playlist popup display
+
 
 #### v5.4.0 2026-03-23 (content: v5.4.0, texture: v5.4.0)
 * Accept `--load` and `--playlist` switches at initial launch
