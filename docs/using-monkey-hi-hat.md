@@ -41,11 +41,11 @@ This is where remote control comes into play.
 
 Users with an Android, Windows, or Linux device (regardless of the OS where Monkey Hi Hat itself runs) can install [Monkey Droid](https://github.com/MV10/monkey-droid), a simple dedicated GUI application for controlling Monkey Hi Hat running on another computer on the same local network. The Windows and Linux executables and the Android APK install package are available on the [release](https://github.com/MV10/monkey-hi-hat/releases/) page. 
 
-Windows may show you a warning when you run the program because it was downloaded from the Internet. The exact message varies based on the Windows version and updates installed. You can choose to allow it every time, but it's usually better to clear that flag. Right-click the exe, choose "Properties", and you should see an `Unblock` button at the bottom.
+* Windows may show you a warning when you run the program because it was downloaded from the Internet. The exact message varies based on the Windows version and which updates have been installed. You can choose to allow it every time, but it's usually better to clear that flag. Right-click the exe, choose "Properties", and you should see an `Unblock` button at the bottom.
 
-Android requires "side-loading" the APK install package (which just means you didn't download it from the Google Play Store). Different manufacturers handle this in different ways, but typically it will ask you about scanning the file. You can do that if you want, but some versions will try to block it because it isn't found on the Play Store. Under the various options you will find something that lets you install it anyway -- choose that. Unfortunately I can't be any more specific than that, there are too many variations out there. I'm sure a Google search will help if you have problems.
+* Android requires "side-loading" the APK install package (which just means you didn't download it from the Google Play Store). Different manufacturers handle this in different ways, but typically it will ask you about scanning the file. You can do that if you want, but some versions will try to block it because it isn't found on the Play Store. Under the various options you will find something that lets you install it anyway -- choose that. Unfortunately I can't be any more specific than that, there are too many variations out there. I'm sure a Google search will help if you have problems.
 
-On Linux, you probably have to make the program executable. Change to the directory where you want the program to run from, and run `chmod +x monkeydroid` and you should be able to launch it after that.
+* On Linux, you have to make the program executable. Change to the directory where you saved the file and run `chmod +x monkeydroid`. You should be able to launch it after that.
 
 There is a setting which controls how these programs communicate. If you don't understand terms like TCP and port, just leave them at the defaults, it will almost always work. The Monkey Hi Hat `mhh.conf` config file has an `UnsecuredPort` setting, which is the TCP port where Monkey Hi Hat receives remote commands. By default, port 50001 will be used, but you can use any open port you wish. The official TCP custom or "dynamic" port range is 49152 to 65535, which is your safest bet for avoiding collisions with other things running on your system.
 
@@ -53,7 +53,7 @@ There is an "alternate" TCP port as well, which is 50002 by default. For now tha
 
 Start Monkey Hi Hat, then launch Monkey Droid on the device of your choosing. The first time you run it, you'll be prompted to enter the name of the computer where Monkey Hi Hat is running. After you enter a name and hit the `Save` button, you'll be taken to a "Playlist" page. It's initially empty, so ask the server what playlists are available: Tap the <kbd>&olarr;</kbd> "Refresh" icon at the bottom left of the page. If you're using the content provided in the [Volts Laboratory](https://github.com/MV10/volts-laboratory) repo, you'll see at least one playlist named `variety`. Select that and Monkey Hi Hat will load and use that playlist.
 
-You can use the <kbd>&lt;</kbd> <kbd>&gt;</kbd> arrows to navigate to different screens. The Visualizer and FX tabs work similarly, refresh the lists and it will begin loading the available content. You can use these to instantly jump to any specific visualizer or add any FX to the current visualizer. Note these are one-offs, if you're in a playlist, it will end that playlist.
+You can use the arrow <kbd>&lt;</kbd> <kbd>&gt;</kbd> buttons to navigate to different screens. The Visualizer and FX tabs work similarly, refresh the lists and it will begin loading the available content. You can use these to instantly jump to any specific visualizer or add any FX to the current visualizer. Note these are one-offs, if you're in a playlist, it will end that playlist. Visualizers and FX both show a music-note icon for those which are audio-reactive.
 
 If you return to the Server List, you can add more servers. The currently selected server is indicated by a dot and you can select any server as the automatically active selection when the program is launched.
 
@@ -62,7 +62,7 @@ There is a Command screen with several commonly-used commands, and there is a Co
 
 ## Remote Control: SSH Terminal
 
-Although the Monkey-Droid app is the most convenient option for normal use, it doesn't expose everything that Monkey Hi Hat can do. There is a manual-input area under _Utils_ but honestly the implementation isn't great. For full control, typing commands is the best option, although I will say 99% of the time I don't use anything but Monkey-Droid.
+Although the Monkey-Droid app is the most convenient option for normal use, it doesn't expose everything that Monkey Hi Hat can do. For full control, typing commands is the best option, although I will say 99% of the time I don't use anything but Monkey-Droid.
 
 SSH (Secure Shell) is a remote terminal protocol, which is techno-nerd-speak that means you can type commands on a separate computer as if you were typing them directly into another computer. SSH has been used in the UNIX world for ages. Relatively recently, Microsoft finally got with the program and began shipping an SSH server and client, although they require a few extra steps to make them easier to use.
 
