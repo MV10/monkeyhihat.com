@@ -34,19 +34,31 @@ At this point the program is running in a window. You can resize or maximize tha
 
 This is where remote control comes into play.
 
+
 ## Remote Control: Monkey-Droid GUI
 
-Users with an Android or Windows device (even if Monkey Hi Hat itself runs on Linux) can install [Monkey Droid](https://github.com/MV10/monkey-droid), a simple dedicated GUI application for controlling Monkey Hi Hat running on another computer on the same local network. The Windows `msix` or the Android `apk` install packages are available on the [release](https://github.com/MV10/monkey-hi-hat/releases/) page. The Monkey Droid application has minor UI bugs (thanks to .NET 7's MAUI being released prematurely) but I plan to rewrite it in 2026 when the libraries have matured.
+> Version 2.0 released in April 2026. If you have 1.0 installed, remove it before using Version 2.0.
+
+Users with an Android, Windows, or Linux device (regardless of the OS where Monkey Hi Hat itself runs) can install [Monkey Droid](https://github.com/MV10/monkey-droid), a simple dedicated GUI application for controlling Monkey Hi Hat running on another computer on the same local network. The Windows and Linux executables and the Android APK install package are available on the [release](https://github.com/MV10/monkey-hi-hat/releases/) page. 
+
+Windows may show you a warning when you run the program because it was downloaded from the Internet. The exact message varies based on the Windows version and updates installed. You can choose to allow it every time, but it's usually better to clear that flag. Right-click the exe, choose "Properties", and you should see an `Unblock` button at the bottom.
+
+Android requires "side-loading" the APK install package (which just means you didn't download it from the Google Play Store). Different manufacturers handle this in different ways, but typically it will ask you about scanning the file. You can do that if you want, but some versions will try to block it because it isn't found on the Play Store. Under the various options you will find something that lets you install it anyway -- choose that. Unfortunately I can't be any more specific than that, there are too many variations out there. I'm sure a Google search will help if you have problems.
+
+On Linux, you probably have to make the program executable. Change to the directory where you want the program to run from, and run `chmod +x monkeydroid` and you should be able to launch it after that.
 
 There is a setting which controls how these programs communicate. If you don't understand terms like TCP and port, just leave them at the defaults, it will almost always work. The Monkey Hi Hat `mhh.conf` config file has an `UnsecuredPort` setting, which is the TCP port where Monkey Hi Hat receives remote commands. By default, port 50001 will be used, but you can use any open port you wish. The official TCP custom or "dynamic" port range is 49152 to 65535, which is your safest bet for avoiding collisions with other things running on your system.
 
-Start Monkey Hi Hat, then launch Monkey Droid on the device of your choosing. Tap the <kbd>+</kbd> "Add" icon at the top right of the Server List page. Enter the name of the computer where Monkey Hi Hat is running, enter the port number, and tap the `Save` button. After returning to the Server List page, choose the server you just defined, and choose the `Use` option from the pop-up. (You can also try the `Test` option just to verify network connectivity.)
+There is an "alternate" TCP port as well, which is 50002 by default. For now that only works when Monkey Hi Hat is running on a Windows machine and the monkey-see-monkey-do service was also selected during installation. Because of security limitations, Linux doesn't have this capability yet.
 
-Once a server is selected, you'll be sent to the Playlist page. It's initially empty, so ask the server what playlists are available: Tap the <kbd>&olarr;</kbd> "Refresh" icon at the top right of the page. If you're using the content provided in the [Volts Laboratory](https://github.com/MV10/volts-laboratory) repo, you'll see at least one playlist named `variety`. Select that and Monkey Hi Hat will load and use that playlist.
+Start Monkey Hi Hat, then launch Monkey Droid on the device of your choosing. The first time you run it, you'll be prompted to enter the name of the computer where Monkey Hi Hat is running. After you enter a name and hit the `Save` button, you'll be taken to a "Playlist" page. It's initially empty, so ask the server what playlists are available: Tap the <kbd>&olarr;</kbd> "Refresh" icon at the bottom left of the page. If you're using the content provided in the [Volts Laboratory](https://github.com/MV10/volts-laboratory) repo, you'll see at least one playlist named `variety`. Select that and Monkey Hi Hat will load and use that playlist.
 
-The Visualizer tab works similarly. It's initially empty, so tap the <kbd>&olarr;</kbd> "Refresh" icon at the top right. You can use this page to jump to any specific visualizer (shader). Note this will terminate the playlist, if one is active. Initially each entry will not have a description loaded. A background thread will read visualizer descriptions and whether or not they are audio-reactive (indicated by a music note icon).
+You can use the <kbd>&lt;</kbd> <kbd>&gt;</kbd> arrows to navigate to different screens. The Visualizer and FX tabs work similarly, refresh the lists and it will begin loading the available content. You can use these to instantly jump to any specific visualizer or add any FX to the current visualizer. Note these are one-offs, if you're in a playlist, it will end that playlist.
 
-The other tabs are self-explanatory. You can issue the other standard Monkey Hi Hat commands, or issue commands manually (which is useful for Monkey Hi Hat commands that haven't been added to Monkey Droid yet).
+If you return to the Server List, you can add more servers. The currently selected server is indicated by a dot and you can select any server as the automatically active selection when the program is launched.
+
+There is a Command screen with several commonly-used commands, and there is a Console screen where you can manually issue commands.
+
 
 ## Remote Control: SSH Terminal
 
