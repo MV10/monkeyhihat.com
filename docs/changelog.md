@@ -4,6 +4,7 @@
 * Distribute Monkey Droid 2.0 (Windows, Android, and now Linux)
 * Add `--md.detailfx` to support FX listings on monkey-droid v2
 * Decouple banner display from playlist popup display
+* Return ERR message instead of help for unknown command-line switch
 
 
 #### v5.4.0 2026-03-23 (content: v5.4.0, texture: v5.4.0)
