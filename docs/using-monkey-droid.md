@@ -8,7 +8,7 @@ Monkey Droid communicates over the local network (only) to a computer running Mo
 
 ## Installation
 
-> If you're using Monkey Droid v1 prior to April 2026, you must manually remove / uninstall.
+> If you're using Monkey Droid v1 prior to April 2026, you must manually remove / uninstall it.
 
 Although version 2 doesn't require installation, each OS may require some manual steps after downloading the file from the [release](https://github.com/MV10/monkey-hi-hat/releases/) page.
 
