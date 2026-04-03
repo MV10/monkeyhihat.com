@@ -37,18 +37,16 @@ At this point the program is running in a window. You can resize or maximize tha
 This is where remote control comes into play...
 
 
-## Remote Control: Monkey-Droid GUI
+## Remote Control: Monkey Droid GUI
 
-> Version 2.0 released in April 2026. If you have 1.0 installed, remove it before using Version 2.0.
+> Version 2 was released in April 2026. If you have version 1 installed, remove it before using version 2.
 
-Users with an Android, Windows, or Linux device (regardless of the OS where Monkey Hi Hat itself runs) can install [Monkey Droid](https://github.com/MV10/monkey-droid), a simple dedicated GUI application for controlling Monkey Hi Hat running on another computer on the same local network. The Windows and Linux executables and the Android APK install package are available on the [release](https://github.com/MV10/monkey-hi-hat/releases/) page. 
-
-Previously this page listed quick getting-started details, but as of version 2 [dedicated instructions](using-monkey-droid.md) are available.
+Previously this section listed quick getting-started details, but as of version 2 [dedicated instructions](using-monkey-droid.md) are available. Users with an Android, Windows, or Linux device (regardless of the OS where Monkey Hi Hat itself runs) can install [Monkey Droid](https://github.com/MV10/monkey-droid), a simple dedicated GUI application for controlling Monkey Hi Hat running on another computer on the same local network. The Windows and Linux executables and the Android APK install package are available on the [release](https://github.com/MV10/monkey-hi-hat/releases/) page. 
 
 
 ## Remote Control: SSH Terminal
 
-Although the Monkey-Droid app is the most convenient option for normal use, it doesn't expose everything that Monkey Hi Hat can do. For full control, typing commands is the best option, although I will say 99% of the time I don't use anything but Monkey-Droid (and you can type commands there, too).
+Although the Monkey Droid GUI is the most convenient option for normal use, it doesn't expose everything that Monkey Hi Hat can do. For full control, typing commands is the best option, although I will say 99% of the time I don't use anything but Monkey-Droid (and you can type commands there, too).
 
 SSH (Secure Shell) is a remote terminal protocol, which is techno-nerd-speak that means you can type commands on a separate computer as if you were typing them directly into another computer. SSH has been used in the UNIX world for ages. Relatively recently, Microsoft finally got with the program and began shipping an SSH server and client, although they require a few extra steps to make them easier to use.
 

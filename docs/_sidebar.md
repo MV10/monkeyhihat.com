@@ -35,7 +35,7 @@
 * [Troubleshooting](troubleshooting)
 * [Changelog](changelog)
 
-**Audio Texture Library**
+**Eyecandy Library Docs**
 * [Eyecandy Introduction](eyecandy-introduction.md)
 * [How Eyecandy Works](eyecandy-how-it-works.md)
 * [Eyecandy Thread Safety](eyecandy-thread-safety.md)

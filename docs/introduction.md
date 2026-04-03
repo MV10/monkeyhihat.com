@@ -26,13 +26,15 @@ And of course, you will need a source of music such as Spotify, Soundcloud, line
 
 The Windows install program handles _all_ major setup requirements. Linux installation requires a couple of manual steps.
 
-The _Quick Start_ pages explain how to install the application and content.
-
-Refer to the _Using Monkey Hi Hat_ section for a brief first-time walkthrough to confirm everything is working.
+The _Quick Start_ pages ([Windows](windows-quick-start.md) or [Linux](linux-quick-start.md)) explain how to install the application and content.
 
 Although the program has many features and options, generally it should work immediately after installation.
 
 Launching the program varies slightly by OS, but once it is running, it works identically on both operating systems.
+
+Refer to the [Using Monkey Hi Hat](using-monkey-hi-hat.md) section for a brief first-time walkthrough to confirm everything is working.
+
+Refer to the [Using Monkey Droid](using-monkey-droid.md) section for the easy-to-use remote control GUI (for Windows, Linux, or Android).
 
 
 ## Advanced Usage

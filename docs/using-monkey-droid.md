@@ -4,19 +4,19 @@ As you have no doubt noticed, I frequently recommend the dedicated remote contro
 
 Typing remote commands (most likely over SSH) was the original game plan, but that was a bit of a hassle sitting on the couch watching it on the big TV in the living room. These days a mobile phone is always within reach, so that was the ideal solution. Unfortunately Apple insists on having a Mac to build anything for iOS and I have zero interest in ever owning Apple products, so at the moment only Android is supported -- or a Windows or Linux device like a tablet.
 
-Monkey Droid communicates over the local network (only) to a computer running Monkey Hi Hat. You must know the computer name. Network communication involves something called TCP ports. If you don't know or care what that means, don't worry, Monkey Hi Hat's default setup normally always works. (If you have problems, open an Issue and ask for help.) Windows installs of Monkey Hi Hat can optionally use a service called monkey-see-monkey-do (MSMD), which listens on an extra port. If Monkey Hi Hat isn't running and you send a command from Monkey Droid, this alternate port is used to "wake up" Monkey Hi Hat. Currently this isn't possible on Linux, it's on my to-do list to figure out.
+Monkey Droid communicates over the local network (only) to a computer running Monkey Hi Hat. You must know the computer name. Network communication involves something called TCP ports. If you don't know or care what that means, don't worry, the default setup normally always works. (If you have problems, open an Issue and ask for help.) Windows installs of Monkey Hi Hat can optionally use a service called monkey-see-monkey-do (MSMD), which listens on an alternate port. If Monkey Hi Hat isn't running and you send a command from Monkey Droid, this alternate port is used to "wake up" Monkey Hi Hat. Linux support for this is Coming Soon, the code is written but not yet tested.
 
 ## Installation
 
-> If you're using Monkey Droid v1 prior to April 2026, you must manually remove / uninstall it.
+> If you're using Monkey Droid v1 (downloaded prior to April 2026), you must manually remove / uninstall it.
 
-Although version 2 doesn't require installation, each OS may require some manual steps after downloading the file from the [release](https://github.com/MV10/monkey-hi-hat/releases/) page.
+Although version 2 doesn't require installation on Windows or Linux, each OS may require some manual steps after downloading the file from the [release](https://github.com/MV10/monkey-hi-hat/releases/) page.
 
 * Windows may show you a warning when you run the program because it was downloaded from the Internet. The exact message varies based on the Windows version and which updates have been installed. You can choose to allow it every time, but it's usually better to clear that flag. Right-click the exe, choose _Properties_, and you should see an `Unblock` button at the bottom.
 
-* Android requires "side-loading" the APK install package (which just means you didn't download it from the Google Play Store). Different manufacturers handle this in different ways, but typically it will ask you about scanning the file. You can do that if you want, but some versions will try to block it because it isn't found on the Play Store. Under the various options you will find something that lets you install it anyway -- choose that. Unfortunately I can't be any more specific than that, there are too many variations out there. I'm sure a Google search will help if you have problems. If you can't figure it out, open an Issue and ask (but no guarantees).
-
 * On Linux, you have to make the program executable. Change to the directory where you saved the file and run `chmod +x monkeydroid`. You should be able to launch it after that.
+
+* Android requires "side-loading" the APK install package (which just means you didn't download it from the Google Play Store). Different manufacturers handle this in different ways, but typically it will ask you about scanning the file. You can do that if you want, but some versions will try to block it because it isn't found on the Play Store. Under the various options you will find something that lets you install it anyway -- choose that. Unfortunately I can't be any more specific than that, there are too many variations out there. I'm sure a Google search will help if you have problems. If you can't figure it out, open an Issue and ask (but no guarantees).
 
 ## Running for the First Time
 
@@ -51,7 +51,7 @@ In the screenshot below, the server named MonkeyHiHat is selected (indicated by 
 
 ![server list](images/md-server-list.png)
 
-If you click or tap on a server, a menu opens with several options which are mostly self-explanatory. The _Test_ option simply tries to connect to the server. Note that if the chosen server is already designated for auto-select at startup, you will see an option to disable that instead. In addition to _Cancel_ you can tap or click anywhere outside the menu to dismiss it. 
+If you click or tap on a server, a menu opens with several options which are mostly self-explanatory. The _Test_ options simply try to connect to the server for a maximum of 1 second. Note that if the chosen server is already designated for auto-select at startup, you will see an option to disable that instead. In addition to _Cancel_ you can tap or click anywhere outside the menu to dismiss it. 
 
 ![server list menu](images/md-server-list-menu.png)
 
