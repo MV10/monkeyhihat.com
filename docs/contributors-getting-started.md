@@ -24,10 +24,11 @@ In the main app, I keep almost everything in the `mhh` namespace. In particular,
 * `mhh\mhh` is the main Monkey Hi Hat application
 * `mhh\install` is a Windows-only .NET Framework installer
 * `mhh\updateconf` is a cross-platform config updater (modern .NET)
-* `testcontent` are various simple shaders and other resources for specific dev purposes
 * `packaging` is a bunch of scripts for deployment, these are specific to my environment
 
-Both `testcontent` and `packaging` are also referenced in the solution as non-build projects for convenience.
+The `packaging` directory is referenced in the solution as a non-build project for convenience.
+
+Formerly the repo had a `testcontent` directory containing simple shaders for testing specific features, but they have been moved to a directory called `mhhtest` in the volts-laboratory repo where all the other content is stored. These are not distributed and are not generally interesting beyond feature testing.
 
 Directories and content within the Monkey Hi Hat app project are described below. 
 
@@ -44,6 +45,8 @@ This is where the program's template / default configuration files are stored (`
 The `Hosting` folder is where you'll find the `HostWindow` class which is the real program loop that runs MHH visualizations and orchestrates all the rest. This is globally accessible as `Program.AppWindow`. It exposes a bunch of functions such as `Command_Load` or `Command_QueueCrossfade` which the console program code invokes after processing command switches. Although MHH is an OpenGL program, it relies heavily on the wrapper library [OpenTK](https://github.com/opentk/opentk), and `HostWindow` is where you'll find a few critical OpenTK event-handlers such as `OnLoad`, `OnRender` and `OnUpdate`.
 
 The rest of the class files here are pretty self-explanatory. For example, `FXConfig.cs` handles parsing and storing the `.config` files that define post-processing effects, and `PlaylistManager.cs` handles playlist processing when MHH is running in that mode.
+
+Texture and cubemap files can be retrived from the internet by visualizers and FX, and this is handled by `HttpDownloadManager`.
 
 ### InternalShaders Directory
 
@@ -70,6 +73,8 @@ These are the classes that support sending and receiving textures with the Spout
 MHH has a few types of caching, all of which is exposed through the `Caching.cs` static class. In some cases like `IdleVisualizer` or `TextShader`, the "cached" data is just an object directly held by the class. There are also several Least-Recently Used (LRU) caches for visualizer, FX, and library shaders, and a permanent `List<>` cache of the crossfade transition shaders, which are scanned, loaded, and compiled at start-up (because they're used very frequently).
 
 The class also stores a `MaxAvailableTextureUnit` integer. This may seem like a strange place to store this value, but the thinking is that it's cached because it has to be read from OpenGL, and it's used often enough that we wouldn't want to be re-reading it all the time via native API calls (and it is specific to your GPU and won't change unless you physically swap hardware).
+
+Textures and cubemaps downloaded from the Internet can be cached on disk, and those operations are handled by the `HttpCacheManager`.
 
 ### Utils\Global Directory
 
@@ -109,6 +114,7 @@ In addition to my eyecandy library, MHH itself is directly dependent upon these 
 | Repository | Description |
 |---|---|
 | [CommandLineSwitchPipe](https://github.com/MV10/CommandLineSwitchPipe) | passes switches to a running instance |
+| [Downloader](https://github.com/bezzad/Downloader) | HTTP texture/cubemap downloads |
 | [FFMediaToolkit](https://github.com/radek-k/FFMediaToolkit) | video playback via ffmpeg |
 | [NdiLibDotNetCoreBase](https://github.com/eliaspuurunen/NdiLibDotNetCoreBase) | NDI streaming textures |
 | [Spout.NETCore](https://github.com/AWAS666/Spout.NETCore) | Spout streaming textures |

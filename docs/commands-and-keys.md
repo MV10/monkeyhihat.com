@@ -8,10 +8,12 @@ The output from `mhh --help` lists available switches:
 
 ```
 By default, the application always loads with the default "idle" shader and all other switches are
-are passed to the already-running instance. Only "--help", "--display", "--load", or "--playlist"
-switches can be used if an instance is not already running.
+are passed to the already-running instance. Only "--help", "--display", "--load", "--playlist", or
+"--cache" switches can be used if an instance is not already running.
 
---help                      shows help (surprise!)
+--help                      shows the most commonly-used switches
+--longhelp                  shows all available switches (this help)
+--standby                   toggles between standby mode and active mode
 --quit                      ends the program
 
 --list [viz|playlists|fx]   shows config files (*.conf) from all defined paths for the requested file type
@@ -60,14 +62,24 @@ switches can be used if an instance is not already running.
 --console                   toggles the console window visibility
 --cls                       clears the console window of the running instance (useful during debug)
 
---devices                   list audio device names, can be used when MHH is not running
-
 --streaming                 streaming commands control Spout / NDI; refer to the docs for details
 --streaming status
 --streaming send spout|ndi ["sender name"]
 --streaming receive spout "source name"
 --streaming receive ndi "machine (source name)" ["group1,group2,...groupN"]
 --streaming stop send|receive
+
+The following switches are only accepted when the program is not already running:
+
+--devices                   list audio device names
+
+--cache purge               removes all cached content
+--cache info                shows cache statistics (counts, size)
+--cache add [url]           retrieves and caches a texture
+--cache find [url]          shows details if URL is already cached
+--cache list                shows all cached files and details
+--cache prefetch            pre-fetches the cache for all viz/FX (subject to count/size limits)
+
 ```
 
 ## Keyboard Input

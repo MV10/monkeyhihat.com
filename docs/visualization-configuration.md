@@ -22,7 +22,9 @@ The visualization configuration tells Monkey Hi Hat what kind of data to send to
 
 * `RandomTextureSync` is false by default. When true, if random texture selection is used (one uniform used for multiple textures), then the same texture index is used for all randomized textures. This is most useful for synchronizing texture masks. (See the [Starship FX](https://github.com/MV10/volts-laboratory/blob/master/fx/starship.conf) for an example of this.)
 
-## The [VertexIntegerArray] Section
+* `Placeholder` is the name of a texture to use when any texture or cubemap will be downloaded (see the _[textures]_ and _[cubemaps]_ sections below). It is blank by default, which uses the internal `badtexture.jpg` image. You can also set it to an asterisk `*` which uses a highly efficient (4 byte) single transparent pixel.
+
+## The [vertexintegerarray] Section
 
 Vertex Source Types can have their own custom settings. The section name matches the Visualizer Type Name.
 
@@ -39,7 +41,7 @@ Currently only `VertexIntegerArray` has additional settings:
   * `TriangleStrip`
   * `TriangleFan`
 
-## The [AudioTextures] Section
+## The [audiotextures] Section
 
 If the visualizer is audio-responsive, this section lists the uniform names of audio textures that will be used by the shaders. Unlike the first version, you _must_ use these pre-defined uniform names in this file and in your shaders. See [Understanding Audio Textures](understanding-audio-textures.md) for more details, but the available types and names are:
 
@@ -55,7 +57,7 @@ If the visualizer is audio-responsive, this section lists the uniform names of a
 
 As of version 2.0, it is no longer necessary to consider or manage OpenGL `TextureUnit` assignments. Also, the `[AudioTextureMultipliers]` section is obsolete. You should apply any boost/cut multipliers in the shader code, or as custom uniforms in the visualizer configuration file (see below).
 
-## The [Uniforms] Section
+## The [uniforms] Section
 
 Custom fixed-value or random-value `float` uniforms can be defined. These are passed to all shaders used by the visualizer. The format is `uniform=value` or `uniform=min:max`. Randomized uniforms are generated each time the config file is loaded, and will remain fixed during that specific run.
 
@@ -63,7 +65,7 @@ Note that due to mathematical quirks of the IEEE `double` data type, the true ma
 
 See also [Shader Basics](shader-basics.md) for a complete list of other uniforms provided by the program such as `time` and `frame` and various random numbers.
 
-## The [Textures] Section
+## The [textures] Section
 
 It's common for shaders to reference a static image as input data. These can be loaded into memory and provided to all shaders as `sampler2D` uniforms. The format is `uniform:filename.ext` and all texture paths defined in `mhh.conf` will be searched. As of v3.1.1, the program can randomly select a texture. Specify the same uniform name multiple times with a different texture filename on each line.
 
@@ -71,7 +73,23 @@ The image-loading library (StbImageSharp) supports the JPG, PNG, BMP, TGA, PSD, 
 
 The Volt's Laboratory archive file provided with each release includes the textures available at the Shadertoy website.
 
-## The [Videos] Section
+## The [cubemaps] Section
+
+As of version 5.0.0, the program supports cubemaps (sometimes called skyboxes). See the link in the next section for an example. Some Shadertoy and Humus examples are included with each release, and the simple `shard` visualizer references some of these. Other than the section name, cubemap retrieval works exactly like textures.
+
+## HTTP Downloading and Caching
+
+As of version 5.5.0, it is possible to retrieve texture and cubemap files over HTTP, and to optionally cache them. (See the _[httpcache]_ documentation in the program config section for details about controlling the caching and downloading behavior.) HTTP retrieval of videos is not supported (videos typically require additional local processing to be well-suited to shader usage, as explained in the next section).
+
+Instead of providing a specific texture or cubemap filename, you simply specify a url: `uniform:http://www.monkeyhihat.com/test/01.jpg` (that's a real cubemap, click the link).
+
+You can use HTTP or HTTPS.
+
+If caching is enabled, the program will first check the cache which is indexed by URL. While the file is downloading, either the system-wide placeholder (defined in the app config) is shown, or the one from the visualizer config is shown.
+
+You can force a download by prefixing the URL with an exclamation point: `uniform:!http://www.monkeyhihat.com/test/01.jpg`. In that case, if a cached version exists, it will be shown, but the file will be downloaded anyway and the cached version will be updated.
+
+## The [videos] Section
 
 As of version 4.3.0, the program can load any video that FFmpeg is able to play (I have only tested with h.264-encoded MP4 files, and the OGV and WEBM files from Shadertoy). Audio is not supported. These are specified the same way image textures are defined, with `uniform:filename.ext` entries, and if the same uniform name is listed multiple times the program will choose a video at random.
 
@@ -87,13 +105,13 @@ ffmpeg -i input.mp4 -r 30 -vf scale=640:360 -an -c:v libx264 -preset medium -b:v
 
 Note also the `VideoFlip` setting in the `[setup]` section of the `mhh.conf` application configuration file. Most file formats have the origin (pixel 0,0) at the top left corner, but OpenGL's origin is at the bottom left. The options for this setting are `Internal` (which seems to perform best in my testing), `FFmpeg` which flips the buffer during decoding (surprising this is slower!), or `None` if you only use custom videos that are saved inverted (super fast!), or you write your own shaders that invert the Y coordinate for texel fetch (`1.0 - resolution.y`). You could also use `None` if you only use abstract videos and you don't care if they're inverted or not.
 
-## The [FX-Blacklist] Section
+## The [fx-blacklist] Section
 
 The post-processing FX shaders sometimes don't work well with certain visualizations, so this section lets a visualizer list the names of any FX shaders that should never be applied. It's just a simple list of the FX config filenames.
 
 A future release will allow you to specify `*` which blocks _all_ FX processing. This is useful for visualizations that should only be loaded with specific FX shaders (and never without), since playlists and the command-line can specify a visualizer / FX combination directly.
 
-## Advanced: The [MultiPass] Section
+## Advanced: The [multiPass] Section
 
 Instead of drawing directly to the OpenGL swap-buffers, a multi-pass shader draws to internally-managed framebuffers. A previously-used framebuffer's texture can be used as input to later passes. Each "pass" consists of another visualizer input object and a pair of vertex and fragment shader files. Other than actually writing the shaders, your main task is to figure out the sequence of buffer usage to produce the desired effect. The buffer numbers are zero-based and should increase sequentially. Skipping numbers or trying to use buffer numbers as inputs that haven't been defined yet will prevent the visualizer from loading.
 

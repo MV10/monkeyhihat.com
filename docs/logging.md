@@ -2,9 +2,13 @@
 
 ## How It Works
 
-When technical troubleshooting becomes necessary, Monkey Hi Hat features fairly extensive and robust logging capabilities. By default, a log file called `mhh.log` is generated in the application's install directory, although this can be changed in the configuration file. The initial log file is named `mhh.log` and over time additional files like `mhh_001.log` and `mhh_002.log` may be seen. The system limits each log file to 5MB, it will never store more than 10 log files, and it doesn't keep log files more than 7 days. Cleanup is automatic when you run the program or new log output occurs. The program uses industry-standard "log levels" to control the amount of detail provided. By default, only warnings or errors are logged, but much greater detail is available when necessary. There is also an option to show log output in the program console window, so you can see the activity as it occurs. Finally, some of the libraries used by the program also contribute to logging.
+When technical troubleshooting becomes necessary, Monkey Hi Hat features fairly extensive and robust logging capabilities. By default, a log file called `mhh.log` is generated in the application's install directory, although this can be changed in the configuration file. The initial log file is named `mhh.log` and over time additional files like `mhh_001.log` and `mhh_002.log` may be seen. The system limits each log file to 5MB, it will never store more than 10 log files, and it doesn't keep log files more than 7 days. Cleanup is automatic when you run the program or new log output occurs. 
 
-Generally a user will not need to care much about logging. It is most useful for app development or troubleshooting specific issues. If you are having a problem with the program, open an issue, and feel free to attach the log file. It may be useful to _temporarily_ "turn up" the logging to a more verbose level of detail, but you do not want to run the program long-term this way, as the log file can get quite large.
+The program uses industry-standard "log levels" to control the amount of detail provided. By default, only warnings or errors are logged, but much greater detail is available when necessary. There is also an option to show log output in the program console window, so you can see the activity as it occurs, but console output is restricted to Warning or higher severity (the configured log level only applies to file logging). Finally, some of the libraries used by the program also contribute to logging.
+
+Since log files are updated continuously each time you run the program, each new run is "tagged" in the log with a separator line, the startup timestamp, and the version and config file pathname. All other log entries are only prefixed by the time and log-level, so these entries make it easy to differentiate one run from the next.
+
+Generally a user will not need to care much about logging. It is most useful for app development or troubleshooting specific issues. If you are having a problem with the program, open an issue, and feel free to attach the log file. It may be useful to _temporarily_ "turn up" the logging to a higher level of detail, but you do not want to run the program long-term this way, as the log files can get quite large very quickly.
 
 ## Configuration
 
@@ -12,7 +16,7 @@ Several settings in `mhh.conf` control logging. The location of the log file is 
 
 The level is controlled by the `LogLevel` setting and is `Warning` by default. Any value from the Levels section below can be used.
 
-Which categories actually produce log entries is controlled by the `LogCategories` setting. This is a comma-separated list. The default is to show Monkey Hi Hat errors as well as OpenGL errors logged by _Eyecandy_ so the default setting is `LogCategories=MHH, Eyecandy.OpenGL`. Even though Monkey Hi Hat also contains a lot of OpenGL code, the OpenGL error-logging facility is "wired up" inside _Eyecandy_ before MHH is even initialized.
+Which categories actually produce log entries is controlled by the `LogCategories` setting. This is a comma-separated list. The default is to show Monkey Hi Hat errors as well as OpenGL errors logged by _Eyecandy_ so the default setting is `LogCategories=MHH, Eyecandy.OpenGL`. Even though Monkey Hi Hat also contains a lot of OpenGL code, the OpenGL error-logging facility is "wired up" inside _Eyecandy_ before MHH is even initialized. Note that console logging (if enabled) will only show Warning, Error, or Critical log output. The other log levels will only be seen in the file-based logging. Usually log levels like Information, Debug, or Trace produce so much continuous output, it isn't useful or practical to dump it to the console, you'll want a text editor to review that information.
 
 Because the filter tests the beginning of category names, partial matches work. For example, to troubleshoot the audio capture capabilities of the _Eyecandy_ library, you could specify `LogCategories=Eyecandy.AudioCapture` and you'd see output from all of these related features:
 
@@ -26,7 +30,9 @@ Other _Eyecandy_ output such as `EyeCandy.AudioTexture` would remain suppressed.
 
 Because OpenGL errors often happen on every frame (ie. 60 times per second) the log file can quickly become gigantic when there is a problem. To address this, _Eyecandy_ is able to throttle repeated errors to keep the logs manageable (and readable). Upon program exit, it will also dump a total count of each throttled error.
 
-`OpenGLErrorThrottle` is a time in milliseconds which defaults to 60000 (one minute). The same OpenGL error will not be output to the log more than this time period.
+`OpenGLErrorThrottle` is a time in milliseconds which defaults to 60000 (one minute). Any repeating OpenGL error will not be output to the log more than this time period.
+
+The OpenGL API uses non-standard terminology for log levels. The `OpenGLErrorLogging` setting defaults to `Normal` and you probably should not change it. The available levels are listed below, but high-detail OpenGL logging (the `DebugContext` setting) is very likely to impact performance. How much impact is highly driver-specific, but it's practically guaranteed.
 
 `OpenGLErrorBreakpoint` defaults to false. This is a developer setting. If this is true and a debugger is attached, a break is triggered if the OpenGL error callback is invoked.
 
@@ -52,7 +58,7 @@ Just a few seconds of start-up verbose logging looks something like this:
 
 ## OpenGL Log Levels
 
-The OpenGL libraries have their own list of custom log levels. High-detail OpenGL logging may impact performance (very driver-specific). The available levels are:
+The OpenGL libraries have their own list of custom log levels. The available levels are:
 
 | Log Level | Description of detail |
 |---|---|
@@ -71,36 +77,39 @@ A log "category" identifies where a logged message comes from. Monkey Hi Hat out
   * AudioCaptureOpenALSoft
   * AudioCaptureSyntheticData
   * AudioCaptureWASAPI
-  * AudioTextureEngine
   * AudioTexture
+  * AudioTextureEngine
   * BaseWindow
   * OpenAL
   * OpenGL
   * Shader
+  * ShaderCompiler
   * ShaderLibrary
 * MHH
+  * CacheLRU
   * ConfigFile
-  * HostWindow
-  * PlaylistConfig
-  * PlaylistManager
-  * VisualizerConfig
-  * Program
   * CrossfadeRenderer
   * FXRenderer
+  * GLResourceManager
+  * HostWindow
+  * HttpCacheManager
+  * HttpDownloadManager
+  * IOSInterop
   * MultipassRenderer
   * MultipassSectionParser
+  * PlaylistConfig
+  * PlaylistManager
+  * Program
   * RenderManager
+  * RenderingHelper
   * ScreenshotWriter
   * SimpleRenderer
   * TextManager
   * TextRenderer
-  * VideoMediaProcessor
-  * CacheLRU
-  * IOSInterop
-  * RenderingHelper
-  * GLResourceManager
   * VertexIntegerArray
   * VertexQuad
+  * VideoMediaProcessor
+  * VisualizerConfig
 
 Some of these output very little, such as "Constructor" when they're created, but not much more (especially if they're very high-performance, such as part of rendering that can happen thousands of times per second). Others are very noisy, such as the `Eyecandy.Shader` category, which is constantly busy in a program such as this. Finally, particularly at Trace and Debug levels of output, some may appear random, based on logging that was needed to troubleshoot a specific issue.
 

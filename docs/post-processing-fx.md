@@ -26,7 +26,7 @@ The third column must be the name of a fragment shader (the `.frag` extension is
 
 ## Other Sections
 
-FX configurations can also specify `[uniforms]`, `[textures]`, `[videos]`, `[audiotextures]` and `[libraries]` sections. These work exactly the same way as the same sections do in visualizer configuration files. See the [Visualization Configuration](visualization-configuration.md) topic for details.
+FX configurations can also specify `[uniforms]`, `[textures]`, `[cubemaps]`, `[videos]`, `[audiotextures]` and `[libraries]` sections. These work exactly the same way as the same sections do in visualizer configuration files, including support for HTTP downloading and caching. See the [Visualization Configuration](visualization-configuration.md) topic for details.
 
 ## Advanced: Option Uniforms
 
