@@ -22,7 +22,7 @@
 **Configuration File**
 * [Conventions](docs-config/conventions.md)
 * [[setup] section](docs-config/setup.md)
-* [[httpcache] section](httpcache.md)
+* [[httpcache] section](docs-config/httpcache.md)
 * [[msmd] section](docs-config/msmd.md)
 * [[text] section](docs-config/text.md)
 * [[ndi] section](docs-config/ndi.md)

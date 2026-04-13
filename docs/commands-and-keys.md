@@ -4,7 +4,7 @@
 
 Executing `mhh` with no switches launches the program. After it is running, you control the running instance by running it again with the switches shown below. These are passed to the running instance, then the second copy exits.  _Most_ of the time you're only going to use a few of these. I regularly only use `--playlist`, `--load`, sometimes `--fx`, and `--standby`.
 
-The output from `mhh --help` lists available switches:
+The output from `mhh --help` lists commonly-used switches, and `--longhelp` shows all available switches:
 
 ```
 By default, the application always loads with the default "idle" shader and all other switches are
@@ -84,7 +84,7 @@ The following switches are only accepted when the program is not already running
 
 ## Keyboard Input
 
-Several keyboard commands are available:
+Several keyboard commands are available when visualizers are running:
 
 | Key | Action |
 |---|---|

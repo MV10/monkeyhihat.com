@@ -75,13 +75,13 @@ The Volt's Laboratory archive file provided with each release includes the textu
 
 ## The [cubemaps] Section
 
-As of version 5.0.0, the program supports cubemaps (sometimes called skyboxes). See the link in the next section for an example. Some Shadertoy and Humus examples are included with each release, and the simple `shard` visualizer references some of these. Other than the section name, cubemap retrieval works exactly like textures.
+As of version 5.0.0, the program supports cubemaps (sometimes called skyboxes). See the link in the next section for an example. Some Shadertoy and Humus examples are included with each release, and the simple _shard_ visualizer references some of these. Other than the section name, cubemap retrieval works exactly like textures.
 
 ## HTTP Downloading and Caching
 
-As of version 5.5.0, it is possible to retrieve texture and cubemap files over HTTP, and to optionally cache them. (See the _[httpcache]_ documentation in the program config section for details about controlling the caching and downloading behavior.) HTTP retrieval of videos is not supported (videos typically require additional local processing to be well-suited to shader usage, as explained in the next section).
+As of version 5.5.0, it is possible to retrieve texture and cubemap files over HTTP, and to optionally cache them. (See the _[httpcache]_ documentation in the _Configuration File_ area of the docs for details about controlling the caching and downloading behavior.) HTTP retrieval of videos is not supported (videos typically require additional local processing to be well-suited to shader usage, as explained in the next section).
 
-Instead of providing a specific texture or cubemap filename, you simply specify a url: `uniform:http://www.monkeyhihat.com/test/01.jpg` (that's a real cubemap, click the link).
+Instead of providing a specific texture or cubemap filename, you simply specify a url: `uniform:http://www.monkeyhihat.com/test/01.jpg` (that's a real cubemap, click this [link](http://www.monkeyhihat.com/test/01.jpg) to view it).
 
 You can use HTTP or HTTPS.
 
@@ -140,17 +140,17 @@ Buffers are just single numbers. You can draw to the same buffer multiple times 
 
 ### Input-Buffer Numbers
 
-The texture of any draw buffer used in a previous pass can be specified in a comma-delimited list. The uniforms are always named `input0`, `input1` and so on, where the number at the end matches the buffer number. So if the pass specifies `1,3` the shader will receive textures in uniforms named `input1` and `input3`. If no inputs are required (commonly on the first pass), use an asterisk in this column.
+The output texture of any draw buffer used in a previous pass can be specified as inputs in a comma-delimited list. The uniforms are always named `input0`, `input1` and so on, where the number at the end matches the buffer number. So if the pass specifies `1,3` the shader will receive textures in uniforms named `input1` and `input3`. If no inputs are required (common on the first pass), use an asterisk in this column.
 
 The repository's test-content [multipass](https://github.com/MV10/monkey-hi-hat/blob/master/testcontent/multipass.conf) visualizer is an example of this (it is the same as the *oil_slick* visualization content from Volt's Laboratory).
 
 ### Input-Buffer Letters
 
-The final texture of any draw buffer from the _previous_ frame can be specified in a comma-delimited list along with the numeric input buffers (numeric buffers refer to the buffer contents from the _current_ frame). The program refers to previous-frame content as "back-buffers" although that's a bit different than what back/front buffer normally means. So front- or draw-buffer 0 corresponds to back-buffer A, and 1 is B, 2 is C, and so on. Their uniform names will be `inputA`, `inputB` and so on.
+The final texture of any draw buffer from the _previous_ frame can be specified in a comma-delimited list as letters, along with the numeric input buffers (numeric buffers refer to the buffer contents from the _current_ frame). The program refers to previous-frame content as "back-buffers" although that's a bit different than what back/front buffer normally means. So front- or draw-buffer 0 corresponds to back-buffer A, and 1 is B, 2 is C, and so on. Their uniform names will be `inputA`, `inputB` and so on.
 
 Unlike Shadertoy buffers, the contents of the back-buffers is fixed throughout the frame. This is actually _increased_ flexibility. Shadertoy buffers only temporarily have access to the previous frame's data -- new output overwrites that data and it isn't available to later passes in the frame. This will be discussed more in the _Shader Basics_ section.
 
-The repository's test-content [doublebuffer](https://github.com/MV10/monkey-hi-hat/blob/master/testcontent/doublebuffer.conf) visualizer is an example of this (it is the same as the _darkstar_ visualization in Volt's Laboratory and the visualizer archive provided in the release downloads).
+The _darkstar_ visualization in Volt's Laboratory is a good example of this, as are several FX.
 
 ### Render-Pass Visualizer Config Files
 
